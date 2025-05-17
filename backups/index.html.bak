@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block title %}Bifold - Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 hero-content slide-in-left">
+                <h1 class="hero-title">Welcome to <span class="text-primary">{{ info.company_name }}</span></h1>
+                <p class="hero-subtitle fade-in" style="animation-delay: 0.3s;">{{ info.product_description }}</p>
+                <div class="hero-cta fade-in" style="animation-delay: 0.6s;">
+                    <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg me-3">Our Products</a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-primary btn-lg">Contact Us</a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="hero-image text-center zoom-in" style="animation-delay: 0.3s;">
+                    <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="{{ info.company_name }} Logo" class="hero-logo pulse">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features py-5">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-5">
+                <h2 class="section-title">Why Choose {{ info.product_name }}?</h2>
+                <p class="lead">In today's digital world, students face unprecedented distractions. The SM-81 is specifically designed to solve this problem.</p>
+            </div>
+            <div class="col-lg-7">
+                <div class="feature-intro p-4 rounded shadow-sm">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="feature-intro-icon me-3">
+                            <i class="fas fa-lightbulb text-primary fa-2x"></i>
+                        </div>
+                        <h4 class="mb-0">The Focus Revolution</h4>
+                    </div>
+                    <p>Studies show that the average student is distracted every 3-5 minutes when using standard smartphones. The SM-81 increases focused study time by up to 60%, leading to better academic outcomes and reduced screen addiction.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for feature in info.features[:3] %}
+            <div class="col-md-4 mb-4">
+                <div class="feature-card text-center h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-{% if loop.index == 1 %}shield-alt{% elif loop.index == 2 %}clock{% else %}check-circle{% endif %}"></i>
+                    </div>
+                    <h4>{{ feature.split(':')[0] if ':' in feature else feature.split('-')[0] if '-' in feature else feature }}</h4>
+                    <p>{{ feature }}</p>
+                    <div class="feature-detail mt-3">
+                        {% if loop.index == 1 %}
+                        <p class="small text-muted">Our advanced content filtering system blocks distracting apps and websites while allowing educational resources. Parents can customize protection levels based on their child's age and needs.</p>
+                        {% elif loop.index == 2 %}
+                        <p class="small text-muted">The SM-81 includes focus timers, scheduled study sessions, and distraction-free modes that help students develop healthy digital habits and time management skills.</p>
+                        {% else %}
+                        <p class="small text-muted">Unlike standard phones that prioritize entertainment, the SM-81 is built from the ground up to support learning with educational apps, study tools, and academic resources.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if info.features|length > 3 %}
+        <div class="row mt-4">
+            {% for feature in info.features[3:] %}
+            <div class="col-md-4 mb-4">
+                <div class="feature-card text-center h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-{% if loop.index == 1 %}mobile-alt{% else %}ban{% endif %}"></i>
+                    </div>
+                    <h4>{{ feature.split(':')[0] if ':' in feature else feature.split('-')[0] if '-' in feature else feature }}</h4>
+                    <p>{{ feature }}</p>
+                    <div class="feature-detail mt-3">
+                        {% if loop.index == 1 %}
+                        <p class="small text-muted">The SM-81 is designed to be durable and reliable for daily student use. With extended battery life and robust construction, it's built to withstand the demands of academic life.</p>
+                        {% else %}
+                        <p class="small text-muted">Our device eliminates social media distractions, endless scrolling, and addictive games that steal focus. Students report feeling less anxious and more productive.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if info.features|length < 6 %}
+            <div class="col-md-4 mb-4">
+                <div class="feature-card text-center h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>Brain-Boosting Activities</h4>
+                    <p>Access to educational games that enhance cognitive skills rather than mindless entertainment.</p>
+                    <div class="feature-detail mt-3">
+                        <p class="small text-muted">Our curated collection of brain-training activities helps develop critical thinking, problem-solving, and memory skills. These games are designed by educational psychologists to support cognitive development.</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="row mt-5">
+            <div class="col-md-6 mb-4">
+                <div class="testimonial-card p-4 rounded shadow-sm h-100">
+                    <div class="testimonial-quote mb-3">
+                        <i class="fas fa-quote-left text-primary fa-2x"></i>
+                    </div>
+                    <p class="testimonial-text">"Since switching to the SM-81, my daughter's grades have improved significantly. She's more focused during study time and actually completes her assignments without constant reminders."</p>
+                    <div class="testimonial-author mt-3">
+                        <p class="mb-0"><strong>Sarah Chen</strong></p>
+                        <p class="small text-muted">Parent of a 14-year-old student</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="testimonial-card p-4 rounded shadow-sm h-100">
+                    <div class="testimonial-quote mb-3">
+                        <i class="fas fa-quote-left text-primary fa-2x"></i>
+                    </div>
+                    <p class="testimonial-text">"As an educator, I've seen firsthand how digital distractions impact learning. The SM-81 provides the perfect balance - giving students the tech tools they need without the constant interruptions."</p>
+                    <div class="testimonial-author mt-3">
+                        <p class="mb-0"><strong>David Wong</strong></p>
+                        <p class="small text-muted">High School Science Teacher</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

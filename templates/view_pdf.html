@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Bifold - View PDF{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header bg-primary text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4">{{ filename }}</h1>
+                <p class="lead">View the document</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PDF Viewer Section -->
+<section class="pdf-viewer-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="pdf-container">
+                    <iframe class="pdf-embed" src="{{ url_for('static', filename='pdfs/' + filename) }}"></iframe>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('static', filename='pdfs/' + filename) }}" class="btn btn-primary" download>Download PDF</a>
+                    <a href="javascript:history.back()" class="btn btn-outline-secondary ms-2">Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

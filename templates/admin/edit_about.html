@@ -1,0 +1,321 @@
+{% extends 'admin/edit_content.html' %}
+
+{% block content_editor %}
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Page Header</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#headerSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="headerSection">
+        <div class="form-group">
+            <label class="form-label">Page Title</label>
+            <input type="text" class="form-control" name="page_title" value="About Us">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Page Subtitle</label>
+            <input type="text" class="form-control" name="page_subtitle" value="Learn more about our mission and vision">
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Company Overview</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#overviewSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="overviewSection">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Section Title</label>
+                    <input type="text" class="form-control" name="overview_title" value="Our Story">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Company Description</label>
+                    <textarea class="form-control" name="company_description" rows="6">{{ info.company_description }}</textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Company Image</label>
+                    <div class="content-image">
+                        <img src="{{ url_for('static', filename='images/extracted/brochure/page2_img1.jpeg') }}" alt="Company Image">
+                        <div class="image-overlay">
+                            <button type="button" class="btn btn-light content-image-upload">
+                                <i class="fas fa-camera me-2"></i>
+                                Change Image
+                            </button>
+                        </div>
+                    </div>
+                    <input type="file" class="form-control d-none" name="company_image" accept="image/*">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Mission & Vision</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#missionSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="missionSection">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Mission Title</label>
+                    <input type="text" class="form-control" name="mission_title" value="Our Mission">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mission Statement</label>
+                    <textarea class="form-control" name="mission_statement" rows="4">To create technology that helps students focus on their education by eliminating digital distractions.</textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Vision Title</label>
+                    <input type="text" class="form-control" name="vision_title" value="Our Vision">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Vision Statement</label>
+                    <textarea class="form-control" name="vision_statement" rows="4">A world where technology enhances education rather than distracting from it, empowering the next generation to reach their full potential.</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Team Members</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#teamSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="teamSection">
+        <div class="form-group">
+            <label class="form-label">Section Title</label>
+            <input type="text" class="form-control" name="team_title" value="Our Team">
+        </div>
+        
+        <div id="teamContainer">
+            <div class="team-member card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="card-title mb-0">Team Member 1</h5>
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-member-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Profile Image</label>
+                                <div class="content-image" style="height: 150px;">
+                                    <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Team Member">
+                                    <div class="image-overlay">
+                                        <button type="button" class="btn btn-light content-image-upload">
+                                            <i class="fas fa-camera me-2"></i>
+                                            Change Image
+                                        </button>
+                                    </div>
+                                </div>
+                                <input type="file" class="form-control d-none" name="team_1_image" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="team_1_name" value="Sudhan Ponnuthurai">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Position</label>
+                                <input type="text" class="form-control" name="team_1_position" value="Founder & CEO">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Bio</label>
+                                <textarea class="form-control" name="team_1_bio" rows="3">Mobile industry expert with over a decade of experience, passionate about creating technology that positively impacts education.</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="card-title mb-0">Team Member 2</h5>
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-member-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Profile Image</label>
+                                <div class="content-image" style="height: 150px;">
+                                    <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Team Member">
+                                    <div class="image-overlay">
+                                        <button type="button" class="btn btn-light content-image-upload">
+                                            <i class="fas fa-camera me-2"></i>
+                                            Change Image
+                                        </button>
+                                    </div>
+                                </div>
+                                <input type="file" class="form-control d-none" name="team_2_image" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="team_2_name" value="Jane Smith">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Position</label>
+                                <input type="text" class="form-control" name="team_2_position" value="Chief Technology Officer">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Bio</label>
+                                <textarea class="form-control" name="team_2_bio" rows="3">Software engineer with expertise in mobile operating systems and parental control technologies.</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" class="btn btn-outline-primary mt-2" id="addTeamMemberBtn">
+            <i class="fas fa-plus me-2"></i>
+            Add Team Member
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add Team Member Button
+        const addTeamMemberBtn = document.getElementById('addTeamMemberBtn');
+        if (addTeamMemberBtn) {
+            addTeamMemberBtn.addEventListener('click', function() {
+                const teamContainer = document.getElementById('teamContainer');
+                const memberCount = teamContainer.children.length + 1;
+                
+                const teamMember = document.createElement('div');
+                teamMember.className = 'team-member card mb-3';
+                teamMember.innerHTML = `
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title mb-0">Team Member ${memberCount}</h5>
+                            <button type="button" class="btn btn-sm btn-outline-danger remove-member-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Profile Image</label>
+                                    <div class="content-image" style="height: 150px;">
+                                        <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Team Member">
+                                        <div class="image-overlay">
+                                            <button type="button" class="btn btn-light content-image-upload">
+                                                <i class="fas fa-camera me-2"></i>
+                                                Change Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <input type="file" class="form-control d-none" name="team_${memberCount}_image" accept="image/*">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" name="team_${memberCount}_name" value="New Team Member">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Position</label>
+                                    <input type="text" class="form-control" name="team_${memberCount}_position" value="Position">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Bio</label>
+                                    <textarea class="form-control" name="team_${memberCount}_bio" rows="3">Team member bio goes here.</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                teamContainer.appendChild(teamMember);
+                initRemoveButtons();
+                initImageUploads();
+            });
+        }
+        
+        // Initialize remove buttons
+        function initRemoveButtons() {
+            document.querySelectorAll('.remove-member-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const teamMember = this.closest('.team-member');
+                    if (confirm('Are you sure you want to remove this team member?')) {
+                        teamMember.remove();
+                    }
+                });
+            });
+        }
+        
+        // Initialize image uploads
+        function initImageUploads() {
+            document.querySelectorAll('.content-image-upload').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const imageContainer = this.closest('.content-image');
+                    const fileInput = imageContainer.nextElementSibling;
+                    fileInput.click();
+                });
+            });
+            
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const imageContainer = this.previousElementSibling;
+                        const img = imageContainer.querySelector('img');
+                        
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            img.src = e.target.result;
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            });
+        }
+        
+        // Initialize
+        initRemoveButtons();
+        initImageUploads();
+        
+        // Form submission
+        const contentForm = document.getElementById('contentEditForm');
+        if (contentForm) {
+            contentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Changes saved successfully!');
+            });
+        }
+    });
+</script>
+{% endblock %}

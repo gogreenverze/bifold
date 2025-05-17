@@ -1,0 +1,41 @@
+{
+    "text": "\n\n\n\n\n\n\n\n\n\n\n\n",
+    "images": [
+        {
+            "filename": "page1_img1.jpeg",
+            "page": 1,
+            "width": 2304,
+            "height": 1296
+        },
+        {
+            "filename": "page2_img1.jpeg",
+            "page": 2,
+            "width": 2304,
+            "height": 1296
+        },
+        {
+            "filename": "page3_img1.jpeg",
+            "page": 3,
+            "width": 1600,
+            "height": 900
+        },
+        {
+            "filename": "page4_img1.jpeg",
+            "page": 4,
+            "width": 1600,
+            "height": 900
+        },
+        {
+            "filename": "page5_img1.jpeg",
+            "page": 5,
+            "width": 1600,
+            "height": 900
+        },
+        {
+            "filename": "page6_img1.jpeg",
+            "page": 6,
+            "width": 1600,
+            "height": 900
+        }
+    ]
+}

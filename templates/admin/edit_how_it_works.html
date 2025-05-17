@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bifold Admin - Edit How It Works</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+
+    <style>
+        .step-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .step-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .step-body {
+            padding: 1.5rem;
+        }
+
+        .step-preview {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-image {
+            flex: 0 0 150px;
+            height: 300px;
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .step-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .phone-mockup-preview {
+            position: relative;
+            width: 150px;
+            height: 300px;
+            background: linear-gradient(145deg, var(--device-dark), var(--device-medium));
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 8px;
+            overflow: hidden;
+        }
+
+        .phone-notch-preview {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 15px;
+            background-color: var(--device-dark);
+            border-radius: 0 0 10px 10px;
+            z-index: 2;
+        }
+
+        .phone-screen-preview {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: var(--device-light);
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .step-image:hover .step-image-overlay {
+            opacity: 1;
+        }
+
+        .step-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            background-color: var(--input-bg);
+            border-color: var(--input-border);
+            color: var(--text-color);
+        }
+
+        .form-control:focus {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .step-order {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .add-step-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            background-color: var(--bg-secondary);
+            border: 2px dashed var(--border-color);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-step-btn:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .preview-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .preview-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Bifold Logo" class="sidebar-logo">
+                <h3>Admin Panel</h3>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_dashboard') }}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='home') }}">
+                        <i class="fas fa-home"></i>
+                        <span>Home Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='about') }}">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='products') }}">
+                        <i class="fas fa-box"></i>
+                        <span>Products Page</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="{{ url_for('admin_edit_how_it_works') }}">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>How It Works</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='contact') }}">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_documentation') }}">
+                        <i class="fas fa-book"></i>
+                        <span>Documentation</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="{{ url_for('how_it_works') }}" target="_blank" class="view-site-btn">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>View Page</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-content">
+            <div class="admin-header">
+                <h1>Edit How It Works</h1>
+                <div class="admin-actions">
+                    <button type="button" class="btn btn-primary" id="saveAllBtn">
+                        <i class="fas fa-save"></i>
+                        Save All Changes
+                    </button>
+                </div>
+            </div>
+
+            <div class="admin-body">
+                <div class="content-card mb-4">
+                    <div class="card-header">
+                        <h2>Page Settings</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="pageSettingsForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="pageTitle" class="form-label">Page Title</label>
+                                        <input type="text" class="form-control" id="pageTitle" name="title" value="{{ how_it_works.title }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="pageDescription" class="form-label">Page Description</label>
+                                        <input type="text" class="form-control" id="pageDescription" name="description" value="{{ how_it_works.description }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-card mb-4">
+                    <div class="card-header">
+                        <h2>App Steps</h2>
+                        <p class="text-muted mb-0">Drag and drop to reorder steps</p>
+                    </div>
+                    <div class="card-body">
+                        <div id="stepsContainer">
+                            {% for step in how_it_works.steps %}
+                            <div class="step-card" data-step-id="{{ step.id }}">
+                                <div class="step-order">{{ loop.index }}</div>
+                                <div class="step-header">
+                                    <h3 class="step-title">{{ step.title }}</h3>
+                                    <div class="step-actions">
+                                        <button type="button" class="btn btn-sm btn-outline-primary move-up-btn" {% if loop.first %}disabled{% endif %}>
+                                            <i class="fas fa-arrow-up"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-primary move-down-btn" {% if loop.last %}disabled{% endif %}>
+                                            <i class="fas fa-arrow-down"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger delete-step-btn" {% if how_it_works.steps|length <= 1 %}disabled{% endif %}>
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="step-body">
+                                    <div class="step-preview">
+                                        <div class="step-image">
+                                            <div class="phone-mockup-preview">
+                                                <div class="phone-notch-preview"></div>
+                                                <div class="phone-screen-preview">
+                                                    <img src="{{ url_for('static', filename='images/how_it_works/' + step.image) }}" alt="{{ step.alt }}">
+                                                </div>
+                                            </div>
+                                            <div class="step-image-overlay">
+                                                <button type="button" class="btn btn-light change-image-btn">
+                                                    <i class="fas fa-camera"></i>
+                                                    Change Image
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="step-form">
+                                            <form class="step-edit-form">
+                                                <input type="hidden" name="id" value="{{ step.id }}">
+                                                <div class="form-group">
+                                                    <label class="form-label">Step Title</label>
+                                                    <input type="text" class="form-control" name="title" value="{{ step.title }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Step Description</label>
+                                                    <textarea class="form-control" name="description" rows="3">{{ step.description }}</textarea>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">App Screen Type</label>
+                                                    <select class="form-control app-screen-type" name="screen_type">
+                                                        <option value="welcome" {% if step.id == 1 %}selected{% endif %}>Welcome Screen</option>
+                                                        <option value="registration" {% if step.id == 2 %}selected{% endif %}>Registration</option>
+                                                        <option value="parent_connection" {% if step.id == 3 %}selected{% endif %}>Parent Connection</option>
+                                                        <option value="focus_mode" {% if step.id == 4 %}selected{% endif %}>Focus Mode</option>
+                                                        <option value="app_permissions" {% if step.id == 5 %}selected{% endif %}>App Permissions</option>
+                                                        <option value="screen_time" {% if step.id == 6 %}selected{% endif %}>Screen Time</option>
+                                                        <option value="resources" {% if step.id == 7 %}selected{% endif %}>Educational Resources</option>
+                                                        <option value="progress" {% if step.id == 8 %}selected{% endif %}>Progress Tracking</option>
+                                                        <option value="notifications" {% if step.id == 9 %}selected{% endif %}>Notifications</option>
+                                                        <option value="rewards" {% if step.id == 10 %}selected{% endif %}>Rewards</option>
+                                                        <option value="communication" {% if step.id == 11 %}selected{% endif %}>Communication</option>
+                                                        <option value="emergency" {% if step.id == 12 %}selected{% endif %}>Emergency Access</option>
+                                                        <option value="reports" {% if step.id == 13 %}selected{% endif %}>Usage Reports</option>
+                                                        <option value="settings" {% if step.id == 14 %}selected{% endif %}>Settings</option>
+                                                        <option value="support" {% if step.id == 15 %}selected{% endif %}>Support</option>
+                                                        <option value="custom">Custom Screen</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">App Header Title</label>
+                                                    <input type="text" class="form-control" name="app_header_title" value="{{ step.title }}">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">App Icon</label>
+                                                    <select class="form-control" name="app_icon">
+                                                        <option value="home" {% if step.id == 1 %}selected{% endif %}>Home</option>
+                                                        <option value="user" {% if step.id == 2 %}selected{% endif %}>User</option>
+                                                        <option value="link" {% if step.id == 3 %}selected{% endif %}>Link</option>
+                                                        <option value="clock" {% if step.id == 4 or step.id == 6 %}selected{% endif %}>Clock</option>
+                                                        <option value="shield-alt" {% if step.id == 5 %}selected{% endif %}>Shield</option>
+                                                        <option value="book" {% if step.id == 7 %}selected{% endif %}>Book</option>
+                                                        <option value="chart-line" {% if step.id == 8 %}selected{% endif %}>Chart</option>
+                                                        <option value="bell" {% if step.id == 9 %}selected{% endif %}>Bell</option>
+                                                        <option value="award" {% if step.id == 10 %}selected{% endif %}>Award</option>
+                                                        <option value="comments" {% if step.id == 11 %}selected{% endif %}>Comments</option>
+                                                        <option value="exclamation-triangle" {% if step.id == 12 %}selected{% endif %}>Warning</option>
+                                                        <option value="file-alt" {% if step.id == 13 %}selected{% endif %}>File</option>
+                                                        <option value="cog" {% if step.id == 14 %}selected{% endif %}>Settings</option>
+                                                        <option value="headset" {% if step.id == 15 %}selected{% endif %}>Support</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Active Navigation Tab</label>
+                                                    <select class="form-control" name="active_tab">
+                                                        <option value="home" {% if step.id == 1 %}selected{% endif %}>Home</option>
+                                                        <option value="focus" {% if step.id == 4 or step.id == 6 %}selected{% endif %}>Focus</option>
+                                                        <option value="learn" {% if step.id == 7 %}selected{% endif %}>Learn</option>
+                                                        <option value="progress" {% if step.id == 8 or step.id == 13 %}selected{% endif %}>Progress</option>
+                                                        <option value="settings" {% if step.id == 14 %}selected{% endif %}>Settings</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Feature 1 Title</label>
+                                                    <input type="text" class="form-control" name="feature1_title" value="Key Benefit">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Feature 1 Description</label>
+                                                    <input type="text" class="form-control" name="feature1_description" value="This feature helps students stay focused and achieve better academic results.">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Feature 2 Title</label>
+                                                    <input type="text" class="form-control" name="feature2_title" value="Added Value">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Feature 2 Description</label>
+                                                    <input type="text" class="form-control" name="feature2_description" value="Parents and educators appreciate the additional control and insights provided.">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Image Alt Text</label>
+                                                    <input type="text" class="form-control" name="alt" value="{{ step.alt }}">
+                                                </div>
+                                                <input type="file" class="form-control d-none image-upload" name="image" accept="image/*">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <button type="button" class="add-step-btn mt-4" id="addStepBtn">
+                            <i class="fas fa-plus me-2"></i>
+                            Add New Step
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ url_for('how_it_works') }}" target="_blank" class="preview-btn" title="Preview Changes">
+        <i class="fas fa-eye"></i>
+    </a>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

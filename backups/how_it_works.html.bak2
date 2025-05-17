@@ -1,0 +1,270 @@
+{% block content %}
+<!-- Page Header -->
+<section class="page-header bg-primary text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4">How It Works</h1>
+                <p class="lead">Discover how the {{ info.product_name }} helps students stay focused and parents stay informed.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mobile App Visualization Section - Vertical Layout -->
+<section class="app-journey-container">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="section-title">The Complete User Journey</h2>
+                <p>Follow the step-by-step process of how our mobile app works to create a distraction-free learning environment.</p>
+            </div>
+        </div>
+
+        <div class="app-journey" id="appJourney">
+            {% for step in how_it_works.steps %}
+            <div class="app-step" data-step="{{ step.id }}" id="step{{ step.id }}">
+                <div class="step-number">{{ step.id }}</div>
+                <div class="step-content-wrapper">
+                    <div class="phone-mockup-container">
+                        <div class="phone-mockup">
+                            <div class="phone-notch"></div>
+                            <div class="phone-button volume-up"></div>
+                            <div class="phone-button volume-down"></div>
+                            <div class="phone-button power"></div>
+                            <div class="phone-screen">
+                                <div class="phone-status-bar">
+                                    <span>9:41</span>
+                                    <div class="status-icons">
+                                        <i class="fas fa-signal"></i>
+                                        <i class="fas fa-wifi"></i>
+                                        <i class="fas fa-battery-full"></i>
+                                    </div>
+                                </div>
+                                <div class="phone-content">
+                                    <div class="app-header">
+                                        <div class="app-back">
+                                            {% if not loop.first %}
+                                            <i class="fas fa-arrow-left"></i>
+                                            {% endif %}
+                                        </div>
+                                        <div class="app-title">{{ step.title }}</div>
+                                        <div class="app-actions">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </div>
+                                    </div>
+                                    <div class="app-body">
+                                        {% if step.id == 1 %}
+                                        <!-- Welcome Screen -->
+                                        <div class="text-center py-4">
+                                            <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Bifold Logo" style="height: 80px; width: auto; margin-bottom: 20px;">
+                                            <h3 style="margin-bottom: 15px; color: var(--primary-color);">Welcome to SM-81</h3>
+                                            <p style="margin-bottom: 30px; color: var(--text-secondary);">Your distraction-free learning companion</p>
+                                            <button class="btn btn-primary btn-block">Get Started</button>
+                                            <button class="btn btn-outline-secondary btn-block mt-2">I already have an account</button>
+                                        </div>
+
+                                        {% elif step.id == 2 %}
+                                        <!-- Registration Screen -->
+                                        <div class="py-2">
+                                            <h4 style="margin-bottom: 15px;">Create Your Profile</h4>
+                                            <div class="form-group mb-3">
+                                                <label>Full Name</label>
+                                                <input type="text" class="form-control form-control-sm" placeholder="Enter your name">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label>Email</label>
+                                                <input type="email" class="form-control form-control-sm" placeholder="Enter your email">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label>Password</label>
+                                                <input type="password" class="form-control form-control-sm" placeholder="Create a password">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label>Grade/Year</label>
+                                                <select class="form-control form-control-sm">
+                                                    <option>Select your grade</option>
+                                                    <option>Grade 6</option>
+                                                    <option>Grade 7</option>
+                                                    <option>Grade 8</option>
+                                                    <option>Grade 9</option>
+                                                    <option>Grade 10</option>
+                                                    <option>Grade 11</option>
+                                                    <option>Grade 12</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-primary btn-sm btn-block mt-3">Continue</button>
+                                        </div>
+
+                                        {% elif step.id == 3 %}
+                                        <!-- Parent Connection -->
+                                        <div class="py-2">
+                                            <h4 style="margin-bottom: 15px;">Connect with Parent</h4>
+                                            <p class="small mb-4">Link your account with a parent or guardian to enable monitoring and controls.</p>
+
+                                            <div class="d-flex justify-content-center mb-4">
+                                                <div style="width: 150px; height: 150px; background-color: #f8f9fa; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-qrcode fa-5x text-primary"></i>
+                                                </div>
+                                            </div>
+
+                                            <p class="text-center small mb-3">Have your parent scan this code with their SM-81 Parent app</p>
+
+                                            <div class="text-center">
+                                                <p class="mb-2">Or send them an invitation link</p>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control form-control-sm" value="https://sm81.com/invite/ABC123" readonly>
+                                                    <button class="btn btn-outline-secondary btn-sm">Copy</button>
+                                                </div>
+                                                <button class="btn btn-primary btn-sm">Send via Email</button>
+                                            </div>
+                                        </div>
+
+                                        {% elif step.id == 4 %}
+                                        <!-- Focus Mode Setup -->
+                                        <div class="py-2">
+                                            <h4 style="margin-bottom: 15px;">Setup Focus Mode</h4>
+                                            <p class="small mb-3">Configure when you need to focus on studies with no distractions.</p>
+
+                                            <div class="card mb-3">
+                                                <div class="card-body p-3">
+                                                    <h5 class="card-title">School Hours</h5>
+                                                    <div class="form-check form-switch mb-2">
+                                                        <input class="form-check-input" type="checkbox" checked>
+                                                        <label class="form-check-label">Monday - Friday</label>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>8:00 AM</div>
+                                                        <div>to</div>
+                                                        <div>3:00 PM</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card mb-3">
+                                                <div class="card-body p-3">
+                                                    <h5 class="card-title">Study Time</h5>
+                                                    <div class="form-check form-switch mb-2">
+                                                        <input class="form-check-input" type="checkbox" checked>
+                                                        <label class="form-check-label">Every Day</label>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>6:00 PM</div>
+                                                        <div>to</div>
+                                                        <div>8:00 PM</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button class="btn btn-outline-primary btn-sm btn-block">
+                                                <i class="fas fa-plus me-2"></i>Add Custom Schedule
+                                            </button>
+                                        </div>
+
+                                        {% else %}
+                                        <!-- Generic content for other screens -->
+                                        <div class="py-3 text-center">
+                                            <div class="mb-4">
+                                                <i class="fas fa-{{
+                                                    'user-shield' if step.id == 5 else
+                                                    'clock' if step.id == 6 else
+                                                    'book' if step.id == 7 else
+                                                    'chart-line' if step.id == 8 else
+                                                    'bell' if step.id == 9 else
+                                                    'award' if step.id == 10 else
+                                                    'comments' if step.id == 11 else
+                                                    'exclamation-triangle' if step.id == 12 else
+                                                    'file-alt' if step.id == 13 else
+                                                    'cog' if step.id == 14 else
+                                                    'headset'
+                                                }} fa-3x text-primary"></i>
+                                            </div>
+                                            <h4 style="margin-bottom: 15px;">{{ step.title }}</h4>
+                                            <p class="small mb-4">{{ step.description }}</p>
+
+                                            {% if step.id == 5 %}
+                                            <!-- App Permissions -->
+                                            <div class="app-list">
+                                                <div class="d-flex justify-content-between align-items-center mb-2 p-2 border-bottom">
+                                                    <div class="d-flex align-items-center">
+                                                        <div style="width: 30px; height: 30px; background-color: #4CAF50; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+                                                            <i class="fas fa-phone text-white"></i>
+                                                        </div>
+                                                        <span>Phone</span>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" checked>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center mb-2 p-2 border-bottom">
+                                                    <div class="d-flex align-items-center">
+                                                        <div style="width: 30px; height: 30px; background-color: #2196F3; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+                                                            <i class="fas fa-comment text-white"></i>
+                                                        </div>
+                                                        <span>Messages</span>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" checked>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center mb-2 p-2 border-bottom">
+                                                    <div class="d-flex align-items-center">
+                                                        <div style="width: 30px; height: 30px; background-color: #FF5722; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+                                                            <i class="fas fa-video text-white"></i>
+                                                        </div>
+                                                        <span>Video Apps</span>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center mb-2 p-2 border-bottom">
+                                                    <div class="d-flex align-items-center">
+                                                        <div style="width: 30px; height: 30px; background-color: #9C27B0; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+                                                            <i class="fas fa-hashtag text-white"></i>
+                                                        </div>
+                                                        <span>Social Media</span>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+
+                                            <button class="btn btn-primary btn-sm mt-3">Continue</button>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="app-navigation">
+                                        <div class="nav-item {% if step.id == 1 %}active{% endif %}">
+                                            <i class="fas fa-home"></i>
+                                            <span>Home</span>
+                                        </div>
+                                        <div class="nav-item {% if step.id == 4 or step.id == 6 %}active{% endif %}">
+                                            <i class="fas fa-clock"></i>
+                                            <span>Focus</span>
+                                        </div>
+                                        <div class="nav-item {% if step.id == 7 %}active{% endif %}">
+                                            <i class="fas fa-book"></i>
+                                            <span>Learn</span>
+                                        </div>
+                                        <div class="nav-item {% if step.id == 8 or step.id == 13 %}active{% endif %}">
+                                            <i class="fas fa-chart-line"></i>
+                                            <span>Progress</span>
+                                        </div>
+                                        <div class="nav-item {% if step.id == 14 %}active{% endif %}">
+                                            <i class="fas fa-cog"></i>
+                                            <span>Settings</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

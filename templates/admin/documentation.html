@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bifold Admin - Documentation</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    
+    <style>
+        .doc-section {
+            margin-bottom: 3rem;
+        }
+        
+        .doc-section h2 {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .doc-section h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .doc-section p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .doc-section ul, .doc-section ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .doc-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-section code {
+            background-color: var(--bg-secondary);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: var(--primary-color);
+        }
+        
+        .doc-section .alert {
+            margin-bottom: 1.5rem;
+        }
+        
+        .doc-section img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .doc-nav {
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .doc-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .doc-nav-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        .doc-nav-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .doc-nav-link:hover, .doc-nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .doc-nav-sublist {
+            list-style: none;
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .doc-nav-subitem {
+            margin-bottom: 0.3rem;
+        }
+        
+        .doc-nav-sublink {
+            display: block;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .doc-nav-sublink:hover, .doc-nav-sublink.active {
+            background-color: var(--bg-secondary);
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Bifold Logo" class="sidebar-logo">
+                <h3>Admin Panel</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_dashboard') }}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='home') }}">
+                        <i class="fas fa-home"></i>
+                        <span>Home Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='about') }}">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='products') }}">
+                        <i class="fas fa-box"></i>
+                        <span>Products Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_how_it_works') }}">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>How It Works</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='contact') }}">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Page</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="{{ url_for('admin_documentation') }}">
+                        <i class="fas fa-book"></i>
+                        <span>Documentation</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="{{ url_for('index') }}" target="_blank" class="view-site-btn">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>View Site</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="admin-content">
+            <div class="admin-header">
+                <h1>Documentation</h1>
+            </div>
+            
+            <div class="admin-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="doc-nav">
+                            <ul class="doc-nav-list">
+                                <li class="doc-nav-item">
+                                    <a href="#introduction" class="doc-nav-link active">Introduction</a>
+                                </li>
+                                <li class="doc-nav-item">
+                                    <a href="#getting-started" class="doc-nav-link">Getting Started</a>
+                                    <ul class="doc-nav-sublist">
+                                        <li class="doc-nav-subitem">
+                                            <a href="#login" class="doc-nav-sublink">Logging In</a>
+                                        </li>
+                                        <li class="doc-nav-subitem">
+                                            <a href="#dashboard" class="doc-nav-sublink">Dashboard Overview</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="doc-nav-item">
+                                    <a href="#content-management" class="doc-nav-link">Content Management</a>
+                                    <ul class="doc-nav-sublist">
+                                        <li class="doc-nav-subitem">
+                                            <a href="#editing-pages" class="doc-nav-sublink">Editing Pages</a>
+                                        </li>
+                                        <li class="doc-nav-subitem">
+                                            <a href="#uploading-images" class="doc-nav-sublink">Uploading Images</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="doc-nav-item">
+                                    <a href="#how-it-works" class="doc-nav-link">How It Works Page</a>
+                                    <ul class="doc-nav-sublist">
+                                        <li class="doc-nav-subitem">
+                                            <a href="#editing-steps" class="doc-nav-sublink">Editing Steps</a>
+                                        </li>
+                                        <li class="doc-nav-subitem">
+                                            <a href="#reordering-steps" class="doc-nav-sublink">Reordering Steps</a>
+                                        </li>
+                                        <li class="doc-nav-subitem">
+                                            <a href="#adding-removing-steps" class="doc-nav-sublink">Adding/Removing Steps</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="doc-nav-item">
+                                    <a href="#troubleshooting" class="doc-nav-link">Troubleshooting</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-9">
+                        <div class="content-card">
+                            <div class="card-body">
+                                <div id="introduction" class="doc-section">
+                                    <h2>Introduction</h2>
+                                    <p>Welcome to the Bifold Admin Dashboard documentation. This guide will help you understand how to use the admin dashboard to manage content across the entire website, including the "How It Works" page with its mobile app visualization sequence.</p>
+                                    
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info-circle me-2"></i>
+                                        This admin dashboard allows you to edit all text content, upload and replace images, and manage the sequence of steps shown in the "How It Works" page.
+                                    </div>
+                                </div>
+                                
+                                <div id="getting-started" class="doc-section">
+                                    <h2>Getting Started</h2>
+                                    
+                                    <div id="login" class="subsection">
+                                        <h3>Logging In</h3>
+                                        <p>To access the admin dashboard, navigate to <code>/admin</code> in your browser. You will be prompted to enter your username and password.</p>
+                                        <p>The default login credentials are:</p>
+                                        <ul>
+                                            <li><strong>Username:</strong> admin</li>
+                                            <li><strong>Password:</strong> bifold2024</li>
+                                        </ul>
+                                        <p>For security reasons, we recommend changing these default credentials after your first login.</p>
+                                    </div>
+                                    
+                                    <div id="dashboard" class="subsection">
+                                        <h3>Dashboard Overview</h3>
+                                        <p>After logging in, you will be directed to the main dashboard. Here you can see an overview of your website content, including:</p>
+                                        <ul>
+                                            <li>Total number of pages</li>
+                                            <li>Number of app screens in the "How It Works" sequence</li>
+                                            <li>Total number of images</li>
+                                            <li>Quick access links to common tasks</li>
+                                            <li>Recent content updates</li>
+                                        </ul>
+                                        <p>The sidebar on the left provides navigation to all sections of the admin dashboard.</p>
+                                    </div>
+                                </div>
+                                
+                                <div id="content-management" class="doc-section">
+                                    <h2>Content Management</h2>
+                                    
+                                    <div id="editing-pages" class="subsection">
+                                        <h3>Editing Pages</h3>
+                                        <p>To edit content on any page:</p>
+                                        <ol>
+                                            <li>Click on the corresponding page link in the sidebar (Home, About, Products, Contact)</li>
+                                            <li>Edit the text in the provided form fields</li>
+                                            <li>Click "Save Changes" to apply your edits</li>
+                                            <li>Use the "Preview" button to see how your changes will look on the live site</li>
+                                        </ol>
+                                        <p>All text fields support basic formatting. You can use the rich text editor to add formatting such as bold, italic, lists, and links.</p>
+                                    </div>
+                                    
+                                    <div id="uploading-images" class="subsection">
+                                        <h3>Uploading Images</h3>
+                                        <p>To replace an existing image:</p>
+                                        <ol>
+                                            <li>Navigate to the page containing the image you want to replace</li>
+                                            <li>Click on the image to open the image selector</li>
+                                            <li>Click "Upload New Image" or select from existing images</li>
+                                            <li>Crop and adjust the image as needed</li>
+                                            <li>Click "Save" to apply the changes</li>
+                                        </ol>
+                                        <p>For best results, use high-quality images with transparent backgrounds (PNG format) whenever possible.</p>
+                                    </div>
+                                </div>
+                                
+                                <div id="how-it-works" class="doc-section">
+                                    <h2>How It Works Page</h2>
+                                    <p>The "How It Works" page features a sequence of mobile app screens that demonstrate the user journey. This section explains how to manage this sequence.</p>
+                                    
+                                    <div id="editing-steps" class="subsection">
+                                        <h3>Editing Steps</h3>
+                                        <p>To edit an existing step in the sequence:</p>
+                                        <ol>
+                                            <li>Navigate to "How It Works" in the sidebar</li>
+                                            <li>Find the step you want to edit</li>
+                                            <li>Update the title, description, and alt text as needed</li>
+                                            <li>To change the image, hover over the current image and click "Change Image"</li>
+                                            <li>Click "Save All Changes" when you're done</li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div id="reordering-steps" class="subsection">
+                                        <h3>Reordering Steps</h3>
+                                        <p>You can change the order of steps in the sequence using the up and down arrow buttons:</p>
+                                        <ol>
+                                            <li>Click the up arrow to move a step earlier in the sequence</li>
+                                            <li>Click the down arrow to move a step later in the sequence</li>
+                                            <li>The step numbers will update automatically</li>
+                                            <li>Click "Save All Changes" to apply the new order</li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div id="adding-removing-steps" class="subsection">
+                                        <h3>Adding/Removing Steps</h3>
+                                        <p>To add a new step:</p>
+                                        <ol>
+                                            <li>Scroll to the bottom of the steps list</li>
+                                            <li>Click "Add New Step"</li>
+                                            <li>Fill in the title, description, and alt text</li>
+                                            <li>Upload an image for the new step</li>
+                                            <li>Click "Save All Changes"</li>
+                                        </ol>
+                                        
+                                        <p>To remove a step:</p>
+                                        <ol>
+                                            <li>Find the step you want to remove</li>
+                                            <li>Click the trash icon in the top-right corner of the step card</li>
+                                            <li>Confirm the deletion when prompted</li>
+                                            <li>Click "Save All Changes"</li>
+                                        </ol>
+                                        <div class="alert alert-warning">
+                                            <i class="fas fa-exclamation-triangle me-2"></i>
+                                            Note: You must have at least one step in the sequence. The delete button will be disabled if there is only one step remaining.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="troubleshooting" class="doc-section">
+                                    <h2>Troubleshooting</h2>
+                                    <p>If you encounter any issues while using the admin dashboard, try these common solutions:</p>
+                                    
+                                    <h3>Changes Not Saving</h3>
+                                    <ul>
+                                        <li>Make sure you click "Save Changes" or "Save All Changes" after making edits</li>
+                                        <li>Check that you have a stable internet connection</li>
+                                        <li>Try refreshing the page and making the changes again</li>
+                                    </ul>
+                                    
+                                    <h3>Image Upload Issues</h3>
+                                    <ul>
+                                        <li>Ensure the image is in a supported format (JPG, PNG, GIF)</li>
+                                        <li>Check that the image file size is under 5MB</li>
+                                        <li>Try using a different browser or clearing your browser cache</li>
+                                    </ul>
+                                    
+                                    <h3>Login Problems</h3>
+                                    <ul>
+                                        <li>Verify that you're using the correct username and password</li>
+                                        <li>Check if Caps Lock is enabled</li>
+                                        <li>Clear your browser cookies and try again</li>
+                                    </ul>
+                                    
+                                    <p>If you continue to experience issues, please contact technical support for assistance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

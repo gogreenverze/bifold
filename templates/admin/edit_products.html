@@ -1,0 +1,568 @@
+{% extends 'admin/edit_content.html' %}
+
+{% block content_editor %}
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Page Header</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#headerSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="headerSection">
+        <div class="form-group">
+            <label class="form-label">Page Title</label>
+            <input type="text" class="form-control" name="page_title" value="Our Products">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Page Subtitle</label>
+            <input type="text" class="form-control" name="page_subtitle" value="Discover our range of distraction-free mobile devices">
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Products</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#productsSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="productsSection">
+        <div id="productsContainer">
+            <!-- Product 1 -->
+            <div class="product-item card mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="card-title mb-0">Product 1</h4>
+                        <div>
+                            <button type="button" class="btn btn-sm btn-outline-primary move-up-btn" disabled>
+                                <i class="fas fa-arrow-up"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary move-down-btn">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Product Image</label>
+                                <div class="content-image">
+                                    <img src="{{ url_for('static', filename='images/extracted/brochure/page1_img3.png') }}" alt="Product Image">
+                                    <div class="image-overlay">
+                                        <button type="button" class="btn btn-light content-image-upload">
+                                            <i class="fas fa-camera me-2"></i>
+                                            Change Image
+                                        </button>
+                                    </div>
+                                </div>
+                                <input type="file" class="form-control d-none" name="product_1_image" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-label">Product Name</label>
+                                <input type="text" class="form-control" name="product_1_name" value="SM-81 Student Edition">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Product Tagline</label>
+                                <input type="text" class="form-control" name="product_1_tagline" value="The flagship model for focused learning">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Product Description</label>
+                                <textarea class="form-control" name="product_1_description" rows="4">The Students Mobile SM-81 is designed for focus and built for growth. It helps parents, educators, and coaching centers protect young minds from distractions and unlock focused learning through responsible technology.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Price</label>
+                                <input type="text" class="form-control" name="product_1_price" value="$299">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h5>Product Features</h5>
+                        <div id="product1FeaturesContainer">
+                            <div class="feature-item card mb-2">
+                                <div class="card-body py-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="form-group mb-0 flex-grow-1">
+                                            <input type="text" class="form-control" name="product_1_feature_1" value="No social media, no video platforms, just essential tools">
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-danger ms-2 remove-feature-btn">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feature-item card mb-2">
+                                <div class="card-body py-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="form-group mb-0 flex-grow-1">
+                                            <input type="text" class="form-control" name="product_1_feature_2" value="Parental Control with built-in screen time tools">
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-danger ms-2 remove-feature-btn">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-primary mt-2" onclick="addFeature('product1FeaturesContainer', 'product_1_feature')">
+                            <i class="fas fa-plus me-1"></i>
+                            Add Feature
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-item card mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="card-title mb-0">Product 2</h4>
+                        <div>
+                            <button type="button" class="btn btn-sm btn-outline-primary move-up-btn">
+                                <i class="fas fa-arrow-up"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary move-down-btn" disabled>
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Product Image</label>
+                                <div class="content-image">
+                                    <img src="{{ url_for('static', filename='images/extracted/brochure/page2_img1.jpeg') }}" alt="Product Image">
+                                    <div class="image-overlay">
+                                        <button type="button" class="btn btn-light content-image-upload">
+                                            <i class="fas fa-camera me-2"></i>
+                                            Change Image
+                                        </button>
+                                    </div>
+                                </div>
+                                <input type="file" class="form-control d-none" name="product_2_image" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-label">Product Name</label>
+                                <input type="text" class="form-control" name="product_2_name" value="SM-81 Pro">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Product Tagline</label>
+                                <input type="text" class="form-control" name="product_2_tagline" value="Advanced features for serious students">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Product Description</label>
+                                <textarea class="form-control" name="product_2_description" rows="4">The Pro version includes all the features of the Student Edition plus extended battery life, enhanced educational tools, and premium build quality for students who need more from their device.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Price</label>
+                                <input type="text" class="form-control" name="product_2_price" value="$399">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h5>Product Features</h5>
+                        <div id="product2FeaturesContainer">
+                            <div class="feature-item card mb-2">
+                                <div class="card-body py-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="form-group mb-0 flex-grow-1">
+                                            <input type="text" class="form-control" name="product_2_feature_1" value="All Student Edition features plus extended battery life">
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-danger ms-2 remove-feature-btn">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="feature-item card mb-2">
+                                <div class="card-body py-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="form-group mb-0 flex-grow-1">
+                                            <input type="text" class="form-control" name="product_2_feature_2" value="Enhanced educational tools and resources">
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-outline-danger ms-2 remove-feature-btn">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-primary mt-2" onclick="addFeature('product2FeaturesContainer', 'product_2_feature')">
+                            <i class="fas fa-plus me-1"></i>
+                            Add Feature
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" class="btn btn-outline-primary mt-3" id="addProductBtn">
+            <i class="fas fa-plus me-2"></i>
+            Add Product
+        </button>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Comparison Table</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#comparisonSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="comparisonSection">
+        <div class="form-group">
+            <label class="form-label">Section Title</label>
+            <input type="text" class="form-control" name="comparison_title" value="Product Comparison">
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>SM-81 Student Edition</th>
+                        <th>SM-81 Pro</th>
+                    </tr>
+                </thead>
+                <tbody id="comparisonTableBody">
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" name="comparison_feature_1" value="Screen Size">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="comparison_student_1" value="6.1 inch">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="comparison_pro_1" value="6.5 inch">
+                        </td>
+                        <td style="width: 50px;">
+                            <button type="button" class="btn btn-sm btn-outline-danger remove-row-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" name="comparison_feature_2" value="Battery Life">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="comparison_student_2" value="12 hours">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="comparison_pro_2" value="18 hours">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-outline-danger remove-row-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <button type="button" class="btn btn-outline-primary mt-2" id="addComparisonRowBtn">
+            <i class="fas fa-plus me-2"></i>
+            Add Row
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add Product Button
+        const addProductBtn = document.getElementById('addProductBtn');
+        if (addProductBtn) {
+            addProductBtn.addEventListener('click', function() {
+                const productsContainer = document.getElementById('productsContainer');
+                const productCount = productsContainer.children.length + 1;
+                
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item card mb-4';
+                productItem.innerHTML = `
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="card-title mb-0">Product ${productCount}</h4>
+                            <div>
+                                <button type="button" class="btn btn-sm btn-outline-primary move-up-btn">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary move-down-btn" disabled>
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-label">Product Image</label>
+                                    <div class="content-image">
+                                        <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Product Image">
+                                        <div class="image-overlay">
+                                            <button type="button" class="btn btn-light content-image-upload">
+                                                <i class="fas fa-camera me-2"></i>
+                                                Change Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <input type="file" class="form-control d-none" name="product_${productCount}_image" accept="image/*">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" name="product_${productCount}_name" value="New Product">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Product Tagline</label>
+                                    <input type="text" class="form-control" name="product_${productCount}_tagline" value="Product tagline">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Product Description</label>
+                                    <textarea class="form-control" name="product_${productCount}_description" rows="4">Product description goes here.</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Price</label>
+                                    <input type="text" class="form-control" name="product_${productCount}_price" value="$299">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <h5>Product Features</h5>
+                            <div id="product${productCount}FeaturesContainer">
+                                <div class="feature-item card mb-2">
+                                    <div class="card-body py-2">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="form-group mb-0 flex-grow-1">
+                                                <input type="text" class="form-control" name="product_${productCount}_feature_1" value="Feature 1">
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-outline-danger ms-2 remove-feature-btn">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-primary mt-2" onclick="addFeature('product${productCount}FeaturesContainer', 'product_${productCount}_feature')">
+                                <i class="fas fa-plus me-1"></i>
+                                Add Feature
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                productsContainer.appendChild(productItem);
+                updateMoveButtons();
+                initRemoveButtons();
+                initImageUploads();
+            });
+        }
+        
+        // Add Comparison Row Button
+        const addComparisonRowBtn = document.getElementById('addComparisonRowBtn');
+        if (addComparisonRowBtn) {
+            addComparisonRowBtn.addEventListener('click', function() {
+                const tableBody = document.getElementById('comparisonTableBody');
+                const rowCount = tableBody.children.length + 1;
+                
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>
+                        <input type="text" class="form-control" name="comparison_feature_${rowCount}" value="Feature ${rowCount}">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="comparison_student_${rowCount}" value="">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="comparison_pro_${rowCount}" value="">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-row-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </td>
+                `;
+                
+                tableBody.appendChild(newRow);
+                initRemoveButtons();
+            });
+        }
+        
+        // Update move buttons
+        function updateMoveButtons() {
+            const productItems = document.querySelectorAll('.product-item');
+            
+            productItems.forEach((item, index) => {
+                const upBtn = item.querySelector('.move-up-btn');
+                const downBtn = item.querySelector('.move-down-btn');
+                
+                // First item can't move up
+                if (index === 0) {
+                    upBtn.disabled = true;
+                } else {
+                    upBtn.disabled = false;
+                }
+                
+                // Last item can't move down
+                if (index === productItems.length - 1) {
+                    downBtn.disabled = true;
+                } else {
+                    downBtn.disabled = false;
+                }
+            });
+        }
+        
+        // Initialize remove buttons
+        function initRemoveButtons() {
+            // Remove Product Button
+            document.querySelectorAll('.remove-product-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productItem = this.closest('.product-item');
+                    if (confirm('Are you sure you want to remove this product?')) {
+                        productItem.remove();
+                        updateMoveButtons();
+                    }
+                });
+            });
+            
+            // Remove Feature Button
+            document.querySelectorAll('.remove-feature-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const featureItem = this.closest('.feature-item');
+                    featureItem.remove();
+                });
+            });
+            
+            // Remove Row Button
+            document.querySelectorAll('.remove-row-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    row.remove();
+                });
+            });
+        }
+        
+        // Initialize image uploads
+        function initImageUploads() {
+            document.querySelectorAll('.content-image-upload').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const imageContainer = this.closest('.content-image');
+                    const fileInput = imageContainer.nextElementSibling;
+                    fileInput.click();
+                });
+            });
+            
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const imageContainer = this.previousElementSibling;
+                        const img = imageContainer.querySelector('img');
+                        
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            img.src = e.target.result;
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            });
+        }
+        
+        // Initialize move buttons
+        document.querySelectorAll('.move-up-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productItem = this.closest('.product-item');
+                const prevItem = productItem.previousElementSibling;
+                
+                if (prevItem) {
+                    productItem.parentNode.insertBefore(productItem, prevItem);
+                    updateMoveButtons();
+                }
+            });
+        });
+        
+        document.querySelectorAll('.move-down-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productItem = this.closest('.product-item');
+                const nextItem = productItem.nextElementSibling;
+                
+                if (nextItem) {
+                    productItem.parentNode.insertBefore(nextItem, productItem);
+                    updateMoveButtons();
+                }
+            });
+        });
+        
+        // Initialize
+        updateMoveButtons();
+        initRemoveButtons();
+        initImageUploads();
+        
+        // Form submission
+        const contentForm = document.getElementById('contentEditForm');
+        if (contentForm) {
+            contentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Changes saved successfully!');
+            });
+        }
+    });
+    
+    // Add Feature function
+    function addFeature(containerId, namePrefix) {
+        const container = document.getElementById(containerId);
+        const featureCount = container.children.length + 1;
+        
+        const featureItem = document.createElement('div');
+        featureItem.className = 'feature-item card mb-2';
+        featureItem.innerHTML = `
+            <div class="card-body py-2">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="form-group mb-0 flex-grow-1">
+                        <input type="text" class="form-control" name="${namePrefix}_${featureCount}" value="New Feature">
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-danger ms-2 remove-feature-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(featureItem);
+        
+        // Add event listener to the new remove button
+        const removeBtn = featureItem.querySelector('.remove-feature-btn');
+        removeBtn.addEventListener('click', function() {
+            featureItem.remove();
+        });
+    }
+</script>
+{% endblock %}

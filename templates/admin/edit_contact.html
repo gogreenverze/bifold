@@ -1,0 +1,455 @@
+{% extends 'admin/edit_content.html' %}
+
+{% block content_editor %}
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Page Header</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#headerSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="headerSection">
+        <div class="form-group">
+            <label class="form-label">Page Title</label>
+            <input type="text" class="form-control" name="page_title" value="Contact Us">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Page Subtitle</label>
+            <input type="text" class="form-control" name="page_subtitle" value="Get in touch with our team">
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Contact Information</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#contactInfoSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="contactInfoSection">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Section Title</label>
+                    <input type="text" class="form-control" name="contact_info_title" value="Contact Information">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Address</label>
+                    <textarea class="form-control" name="address" rows="3">123 Tech Street, Innovation Park, Singapore 123456</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" value="info@sudhanmobiles.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" value="+65 1234 5678">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Business Hours</label>
+                    <textarea class="form-control" name="business_hours" rows="5">Monday - Friday: 9:00 AM - 6:00 PM
+Saturday: 10:00 AM - 4:00 PM
+Sunday: Closed</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Social Media Links</label>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text"><i class="fab fa-facebook"></i></span>
+                        <input type="text" class="form-control" name="facebook_link" value="https://facebook.com/sudhanmobiles">
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text"><i class="fab fa-twitter"></i></span>
+                        <input type="text" class="form-control" name="twitter_link" value="https://twitter.com/sudhanmobiles">
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text"><i class="fab fa-instagram"></i></span>
+                        <input type="text" class="form-control" name="instagram_link" value="https://instagram.com/sudhanmobiles">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fab fa-linkedin"></i></span>
+                        <input type="text" class="form-control" name="linkedin_link" value="https://linkedin.com/company/sudhanmobiles">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Contact Form</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#contactFormSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="contactFormSection">
+        <div class="form-group">
+            <label class="form-label">Section Title</label>
+            <input type="text" class="form-control" name="contact_form_title" value="Send Us a Message">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Form Introduction</label>
+            <textarea class="form-control" name="form_intro" rows="3">Have questions about our products or services? Fill out the form below and we'll get back to you as soon as possible.</textarea>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">Form Fields</h5>
+            </div>
+            <div class="card-body">
+                <div id="formFieldsContainer">
+                    <div class="form-field-item card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Field 1</h5>
+                                <div>
+                                    <button type="button" class="btn btn-sm btn-outline-primary move-up-btn" disabled>
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary move-down-btn">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger remove-field-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Field Label</label>
+                                        <input type="text" class="form-control" name="field_1_label" value="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Field Type</label>
+                                        <select class="form-control" name="field_1_type">
+                                            <option value="text" selected>Text</option>
+                                            <option value="email">Email</option>
+                                            <option value="tel">Phone</option>
+                                            <option value="textarea">Textarea</option>
+                                            <option value="select">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Placeholder</label>
+                                <input type="text" class="form-control" name="field_1_placeholder" value="Enter your name">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="field_1_required" id="field_1_required" checked>
+                                <label class="form-check-label" for="field_1_required">
+                                    Required field
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-field-item card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Field 2</h5>
+                                <div>
+                                    <button type="button" class="btn btn-sm btn-outline-primary move-up-btn">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary move-down-btn">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger remove-field-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Field Label</label>
+                                        <input type="text" class="form-control" name="field_2_label" value="Email">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Field Type</label>
+                                        <select class="form-control" name="field_2_type">
+                                            <option value="text">Text</option>
+                                            <option value="email" selected>Email</option>
+                                            <option value="tel">Phone</option>
+                                            <option value="textarea">Textarea</option>
+                                            <option value="select">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Placeholder</label>
+                                <input type="text" class="form-control" name="field_2_placeholder" value="Enter your email">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="field_2_required" id="field_2_required" checked>
+                                <label class="form-check-label" for="field_2_required">
+                                    Required field
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-field-item card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Field 3</h5>
+                                <div>
+                                    <button type="button" class="btn btn-sm btn-outline-primary move-up-btn">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary move-down-btn" disabled>
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger remove-field-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Field Label</label>
+                                        <input type="text" class="form-control" name="field_3_label" value="Message">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Field Type</label>
+                                        <select class="form-control" name="field_3_type">
+                                            <option value="text">Text</option>
+                                            <option value="email">Email</option>
+                                            <option value="tel">Phone</option>
+                                            <option value="textarea" selected>Textarea</option>
+                                            <option value="select">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Placeholder</label>
+                                <input type="text" class="form-control" name="field_3_placeholder" value="Enter your message">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="field_3_required" id="field_3_required" checked>
+                                <label class="form-check-label" for="field_3_required">
+                                    Required field
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn btn-outline-primary mt-2" id="addFieldBtn">
+                    <i class="fas fa-plus me-2"></i>
+                    Add Field
+                </button>
+            </div>
+        </div>
+        
+        <div class="form-group mt-3">
+            <label class="form-label">Submit Button Text</label>
+            <input type="text" class="form-control" name="submit_button_text" value="Send Message">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Success Message</label>
+            <textarea class="form-control" name="success_message" rows="2">Thank you for your message. We'll get back to you shortly!</textarea>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Map</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#mapSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="mapSection">
+        <div class="form-group">
+            <label class="form-label">Show Map</label>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="showMap" name="show_map" checked>
+                <label class="form-check-label" for="showMap">Display map on contact page</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Map Embed URL</label>
+            <input type="text" class="form-control" name="map_url" value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7258670816946!2d103.8516155!3d1.3553875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMjEnMTkuNCJOIDEwM8KwNTEnMDUuOCJF!5e0!3m2!1sen!2ssg!4v1620000000000!5m2!1sen!2ssg">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Map Height</label>
+            <div class="input-group">
+                <input type="number" class="form-control" name="map_height" value="400">
+                <span class="input-group-text">px</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add Field Button
+        const addFieldBtn = document.getElementById('addFieldBtn');
+        if (addFieldBtn) {
+            addFieldBtn.addEventListener('click', function() {
+                const fieldsContainer = document.getElementById('formFieldsContainer');
+                const fieldCount = fieldsContainer.children.length + 1;
+                
+                const fieldItem = document.createElement('div');
+                fieldItem.className = 'form-field-item card mb-3';
+                fieldItem.innerHTML = `
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title mb-0">Field ${fieldCount}</h5>
+                            <div>
+                                <button type="button" class="btn btn-sm btn-outline-primary move-up-btn">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary move-down-btn" disabled>
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-danger remove-field-btn">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Field Label</label>
+                                    <input type="text" class="form-control" name="field_${fieldCount}_label" value="New Field">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Field Type</label>
+                                    <select class="form-control" name="field_${fieldCount}_type">
+                                        <option value="text" selected>Text</option>
+                                        <option value="email">Email</option>
+                                        <option value="tel">Phone</option>
+                                        <option value="textarea">Textarea</option>
+                                        <option value="select">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Placeholder</label>
+                            <input type="text" class="form-control" name="field_${fieldCount}_placeholder" value="Enter value">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="field_${fieldCount}_required" id="field_${fieldCount}_required">
+                            <label class="form-check-label" for="field_${fieldCount}_required">
+                                Required field
+                            </label>
+                        </div>
+                    </div>
+                `;
+                
+                fieldsContainer.appendChild(fieldItem);
+                updateMoveButtons();
+                initRemoveButtons();
+                initMoveButtons();
+            });
+        }
+        
+        // Update move buttons
+        function updateMoveButtons() {
+            const fieldItems = document.querySelectorAll('.form-field-item');
+            
+            fieldItems.forEach((item, index) => {
+                const upBtn = item.querySelector('.move-up-btn');
+                const downBtn = item.querySelector('.move-down-btn');
+                
+                // First item can't move up
+                if (index === 0) {
+                    upBtn.disabled = true;
+                } else {
+                    upBtn.disabled = false;
+                }
+                
+                // Last item can't move down
+                if (index === fieldItems.length - 1) {
+                    downBtn.disabled = true;
+                } else {
+                    downBtn.disabled = false;
+                }
+            });
+        }
+        
+        // Initialize remove buttons
+        function initRemoveButtons() {
+            document.querySelectorAll('.remove-field-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const fieldItem = this.closest('.form-field-item');
+                    if (confirm('Are you sure you want to remove this field?')) {
+                        fieldItem.remove();
+                        updateMoveButtons();
+                    }
+                });
+            });
+        }
+        
+        // Initialize move buttons
+        function initMoveButtons() {
+            document.querySelectorAll('.move-up-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const fieldItem = this.closest('.form-field-item');
+                    const prevItem = fieldItem.previousElementSibling;
+                    
+                    if (prevItem) {
+                        fieldItem.parentNode.insertBefore(fieldItem, prevItem);
+                        updateMoveButtons();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.move-down-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const fieldItem = this.closest('.form-field-item');
+                    const nextItem = fieldItem.nextElementSibling;
+                    
+                    if (nextItem) {
+                        fieldItem.parentNode.insertBefore(nextItem, fieldItem);
+                        updateMoveButtons();
+                    }
+                });
+            });
+        }
+        
+        // Initialize
+        updateMoveButtons();
+        initRemoveButtons();
+        initMoveButtons();
+        
+        // Form submission
+        const contentForm = document.getElementById('contentEditForm');
+        if (contentForm) {
+            contentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Changes saved successfully!');
+            });
+        }
+    });
+</script>
+{% endblock %}

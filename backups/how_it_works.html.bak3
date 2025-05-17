@@ -1,0 +1,161 @@
+                    <div class="app-step-content">
+                        <h3 class="app-step-title">{{ step.title }}</h3>
+                        <p class="app-step-description">{{ step.description }}</p>
+
+                        <ul class="app-step-features">
+                            {% if step.id == 1 %}
+                            <li class="app-step-feature">
+                                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="feature-text">
+                                    <h5 class="feature-title">Distraction-Free Design</h5>
+                                    <p class="feature-description">Clean interface that eliminates distractions and helps students focus on what matters.</p>
+                                </div>
+                            </li>
+                            <li class="app-step-feature">
+                                <div class="feature-icon"><i class="fas fa-user-lock"></i></div>
+                                <div class="feature-text">
+                                    <h5 class="feature-title">Secure Environment</h5>
+                                    <p class="feature-description">Built with privacy and security in mind to protect student data and activity.</p>
+                                </div>
+                            </li>
+                            {% elif step.id == 2 %}
+                            <li class="app-step-feature">
+                                <div class="feature-icon"><i class="fas fa-user-plus"></i></div>
+                                <div class="feature-text">
+                                    <h5 class="feature-title">Personalized Experience</h5>
+                                    <p class="feature-description">Create a profile tailored to your educational needs and goals.</p>
+                                </div>
+                            </li>
+                            <li class="app-step-feature">
+                                <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <div class="feature-text">
+                                    <h5 class="feature-title">Grade-Specific Content</h5>
+                                    <p class="feature-description">Access resources and tools appropriate for your academic level.</p>
+                                </div>
+                            </li>
+                            {% elif step.id == 3 %}
+                            <li class="app-step-feature">
+                                <div class="feature-icon"><i class="fas fa-link"></i></div>
+                                <div class="feature-text">
+                                    <h5 class="feature-title">Seamless Connection</h5>
+                                    <p class="feature-description">Simple QR code or link sharing to connect parent and student accounts.</p>
+                                </div>
+                            </li>
+                            <li class="app-step-feature">
+                                <div class="feature-icon"><i class="fas fa-eye"></i></div>
+                                <div class="feature-text">
+                                    <h5 class="feature-title">Transparent Monitoring</h5>
+                                    <p class="feature-description">Students always know what information parents can see, building trust and accountability.</p>
+                                </div>
+                            </li>
+                            {% else %}
+                            <li class="app-step-feature">
+                                <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                                <div class="feature-text">
+                                    <h5 class="feature-title">Key Benefit</h5>
+                                    <p class="feature-description">This feature helps students stay focused and achieve better academic results.</p>
+                                </div>
+                            </li>
+                            <li class="app-step-feature">
+                                <div class="feature-icon"><i class="fas fa-star"></i></div>
+                                <div class="feature-text">
+                                    <h5 class="feature-title">Added Value</h5>
+                                    <p class="feature-description">Parents and educators appreciate the additional control and insights provided.</p>
+                                </div>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Additional Information Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title">Why Choose {{ info.product_name }}?</h2>
+                <p>The {{ info.product_name }} is designed with a single purpose: to help students focus on what matters most - their education.</p>
+                <ul class="list-unstyled mt-4">
+                    {% for feature in info.features %}
+                    <li class="mb-3">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="fas fa-check-circle text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">{{ feature }}</h5>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4">Ready to get started?</h3>
+                        <p>Contact us today to learn more about how the {{ info.product_name }} can help your students or children stay focused on their studies.</p>
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary mt-3">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add smooth scrolling for step links
+        document.querySelectorAll('a[href^="#step"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for steps
+        const appSteps = document.querySelectorAll('.app-step');
+
+        const animateOnScroll = function() {
+            appSteps.forEach(step => {
+                const stepPosition = step.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                // If step is in viewport
+                if (stepPosition < windowHeight - 100) {
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animation
+        appSteps.forEach(step => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(20px)';
+            step.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        // Run once on page load
+        setTimeout(animateOnScroll, 100);
+
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    });
+</script>
+{% endblock %}

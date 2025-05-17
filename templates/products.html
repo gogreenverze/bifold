@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+{% block title %}Bifold - Products{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4">{{ info.product_name }}</h1>
+                <p class="lead">Designed for focus. Built for growth. Trusted by parents.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Introduction -->
+<section class="products-intro py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title">A Phone That Promotes Focus, Not Distractions</h2>
+                <p class="lead">At {{ info.company_name }}, we've created a phone that helps students stay focused on what matters. The {{ info.product_name }} eliminates distractions while providing essential communication tools.</p>
+                <p>Too many distractions, too little focus. Today's smartphones weren't made for students — they're made to grab attention. That's why the {{ info.product_name }} comes in. We help parents, educators, and coaching centers protect young minds from distractions and unlock focused learning through responsible technology.</p>
+                <a href="{{ url_for('view_pdf', filename='Bifold Brochure- SM81.pdf') }}" class="btn btn-primary mt-3">View Product Brochure</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Showcase -->
+<section class="products-showcase py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">{{ info.product_name }} Features</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="product-card h-100">
+                    <img src="{{ url_for('static', filename='images/extracted/brochure/page1_img3.png') }}" alt="{{ info.product_name }}" class="product-image img-fluid">
+                    <div class="product-content">
+                        <h3>The Phone</h3>
+                        <p>The {{ info.product_name }} is designed specifically for students, providing essential communication tools without the distractions of typical smartphones.</p>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i> Sleek, modern design</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Durable construction</li>
+                            <li><i class="fas fa-check text-success me-2"></i> User-friendly interface</li>
+                        </ul>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal1">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="product-card h-100">
+                    <img src="{{ url_for('static', filename='images/extracted/brochure/page2_img1.jpeg') }}" alt="App Restrictions" class="product-image img-fluid">
+                    <div class="product-content">
+                        <h3>App Restrictions</h3>
+                        <p>The {{ info.product_name }} comes with strict app restrictions to eliminate distractions and promote focused learning.</p>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li><i class="fas fa-ban text-danger me-2"></i> No social media</li>
+                            <li><i class="fas fa-ban text-danger me-2"></i> No video platforms</li>
+                            <li><i class="fas fa-ban text-danger me-2"></i> No mindless scrolling</li>
+                        </ul>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal2">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="product-card h-100">
+                    <div class="product-content">
+                        <h3>Essential Apps Only</h3>
+                        <p>The {{ info.product_name }} comes preloaded with only the essential apps students need for communication and productivity.</p>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i> WhatsApp</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Phone</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Maps</li>
+                            <li><i class="fas fa-check text-success me-2"></i> File Manager</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Gallery</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Gmail</li>
+                        </ul>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal3">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="product-card h-100">
+                    <div class="product-content">
+                        <h3>Parental Control</h3>
+                        <p>Parents stay in control with built-in screen time tools and monitoring features.</p>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i> Screen time limits</li>
+                            <li><i class="fas fa-check text-success me-2"></i> App usage monitoring</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Remote locking capabilities</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Peace of mind for parents</li>
+                        </ul>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal4">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Brochure Section -->
+<section class="brochure-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title">{{ info.product_name }} Brochure</h2>
+                <p>For detailed specifications and additional information about the {{ info.product_name }}, please view our comprehensive product brochure.</p>
+                <p>This document provides in-depth details about the phone's features, benefits, and how it helps students stay focused on their studies.</p>
+                <a href="{{ url_for('view_pdf', filename='Bifold Brochure- SM81.pdf') }}" class="btn btn-primary mt-3">View Product Brochure</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="device-showcase">
+                    <div class="tablet-device">
+                        <div class="tablet-screen">
+                            <div class="device-header">
+                                <div class="title">{{ info.product_name }} Brochure</div>
+                                <div class="actions">
+                                    <i class="fas fa-download"></i>
+                                    <i class="fas fa-share"></i>
+                                </div>
+                            </div>
+                            <div class="device-body">
+                                <div class="text-center mb-4">
+                                    <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="{{ info.company_name }}" style="height: 60px; width: auto;">
+                                    <h4 class="mt-2">Product Specifications</h4>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="p-2 rounded spec-item">
+                                            <h6 class="mb-1">Display</h6>
+                                            <p class="small text-muted mb-0">5.5" HD+ IPS</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-2 rounded spec-item">
+                                            <h6 class="mb-1">Battery</h6>
+                                            <p class="small text-muted mb-0">4000mAh</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="p-2 rounded spec-item">
+                                            <h6 class="mb-1">Storage</h6>
+                                            <p class="small text-muted mb-0">32GB</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-2 rounded spec-item">
+                                            <h6 class="mb-1">RAM</h6>
+                                            <p class="small text-muted mb-0">3GB</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <a href="{{ url_for('view_pdf', filename='Bifold Brochure- SM81.pdf') }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-file-pdf me-1"></i> View Full Brochure
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta py-5 bg-primary text-white text-center">
+    <div class="container">
+        <h2 class="mb-4">Ready to help your student focus better?</h2>
+        <p class="lead mb-4">Contact our team today to learn more about the {{ info.product_name }} and how it can benefit your child's education.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg">Contact Us Now</a>
+    </div>
+</section>
+
+<!-- Product Modals -->
+<!-- Product Modal 1 -->
+<div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModal1Label">{{ info.product_name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{ url_for('static', filename='images/extracted/brochure/page1_img3.png') }}" alt="{{ info.product_name }}" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Product Description</h4>
+                        <p>{{ info.product_description }}</p>
+                        <h4 class="mt-4">Key Features</h4>
+                        <ul>
+                            {% for feature in info.features %}
+                            <li>{{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h4 class="mt-4">Benefits</h4>
+                        <ul>
+                            <li>Improved focus and concentration for students</li>
+                            <li>Better academic performance</li>
+                            <li>Peace of mind for parents</li>
+                            <li>Reduced screen addiction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Product Modals would be added here with similar structure -->
+
+{% endblock %}

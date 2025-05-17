@@ -1,0 +1,347 @@
+{% extends 'admin/edit_content.html' %}
+
+{% block content_editor %}
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Hero Section</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#heroSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="heroSection">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Heading</label>
+                    <input type="text" class="form-control" name="hero_heading" value="Distraction-Free Mobile for Students">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Subheading</label>
+                    <input type="text" class="form-control" name="hero_subheading" value="Designed for focus, built for growth">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Button Text</label>
+                    <input type="text" class="form-control" name="hero_button_text" value="Learn More">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">Hero Image</label>
+                    <div class="content-image">
+                        <img src="{{ url_for('static', filename='images/extracted/brochure/page1_img3.png') }}" alt="Hero Image">
+                        <div class="image-overlay">
+                            <button type="button" class="btn btn-light content-image-upload">
+                                <i class="fas fa-camera me-2"></i>
+                                Change Image
+                            </button>
+                        </div>
+                    </div>
+                    <input type="file" class="form-control d-none" name="hero_image" accept="image/*">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">About Section</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#aboutSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="aboutSection">
+        <div class="form-group">
+            <label class="form-label">Section Title</label>
+            <input type="text" class="form-control" name="about_title" value="About {{ info.product_name }}">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" name="about_description" rows="4">{{ info.product_description }}</textarea>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Features Section</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#featuresSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="featuresSection">
+        <div class="form-group">
+            <label class="form-label">Section Title</label>
+            <input type="text" class="form-control" name="features_title" value="Key Features">
+        </div>
+        
+        <div id="featuresContainer">
+            {% for feature in info.features %}
+            <div class="feature-item card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="card-title mb-0">Feature {{ loop.index }}</h5>
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-feature-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Feature Text</label>
+                        <input type="text" class="form-control" name="feature_{{ loop.index }}" value="{{ feature }}">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <button type="button" class="btn btn-outline-primary mt-2" id="addFeatureBtn">
+            <i class="fas fa-plus me-2"></i>
+            Add Feature
+        </button>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-header">
+        <h3 class="section-title">Featured Products</h3>
+        <div class="section-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#productsSection">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <div class="section-body collapse show" id="productsSection">
+        <div class="form-group">
+            <label class="form-label">Section Title</label>
+            <input type="text" class="form-control" name="products_title" value="Featured Products">
+        </div>
+        
+        <div class="row" id="productsContainer">
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title mb-0">Product 1</h5>
+                            <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Product Name</label>
+                            <input type="text" class="form-control" name="product_1_name" value="SM-81 Student Edition">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Product Description</label>
+                            <textarea class="form-control" name="product_1_description" rows="3">The flagship model designed specifically for students with all essential features.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Product Image</label>
+                            <div class="content-image">
+                                <img src="{{ url_for('static', filename='images/extracted/brochure/page1_img3.png') }}" alt="Product Image">
+                                <div class="image-overlay">
+                                    <button type="button" class="btn btn-light content-image-upload">
+                                        <i class="fas fa-camera me-2"></i>
+                                        Change Image
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="file" class="form-control d-none" name="product_1_image" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title mb-0">Product 2</h5>
+                            <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Product Name</label>
+                            <input type="text" class="form-control" name="product_2_name" value="SM-81 Pro">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Product Description</label>
+                            <textarea class="form-control" name="product_2_description" rows="3">Advanced model with additional educational tools and extended battery life.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Product Image</label>
+                            <div class="content-image">
+                                <img src="{{ url_for('static', filename='images/extracted/brochure/page2_img1.jpeg') }}" alt="Product Image">
+                                <div class="image-overlay">
+                                    <button type="button" class="btn btn-light content-image-upload">
+                                        <i class="fas fa-camera me-2"></i>
+                                        Change Image
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="file" class="form-control d-none" name="product_2_image" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" class="btn btn-outline-primary mt-2" id="addProductBtn">
+            <i class="fas fa-plus me-2"></i>
+            Add Product
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add Feature Button
+        const addFeatureBtn = document.getElementById('addFeatureBtn');
+        if (addFeatureBtn) {
+            addFeatureBtn.addEventListener('click', function() {
+                const featuresContainer = document.getElementById('featuresContainer');
+                const featureCount = featuresContainer.children.length + 1;
+                
+                const featureItem = document.createElement('div');
+                featureItem.className = 'feature-item card mb-3';
+                featureItem.innerHTML = `
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title mb-0">Feature ${featureCount}</h5>
+                            <button type="button" class="btn btn-sm btn-outline-danger remove-feature-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Feature Text</label>
+                            <input type="text" class="form-control" name="feature_${featureCount}" value="New Feature">
+                        </div>
+                    </div>
+                `;
+                
+                featuresContainer.appendChild(featureItem);
+                initRemoveButtons();
+            });
+        }
+        
+        // Add Product Button
+        const addProductBtn = document.getElementById('addProductBtn');
+        if (addProductBtn) {
+            addProductBtn.addEventListener('click', function() {
+                const productsContainer = document.getElementById('productsContainer');
+                const productCount = productsContainer.children.length + 1;
+                
+                const productCol = document.createElement('div');
+                productCol.className = 'col-md-6 mb-3';
+                productCol.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">Product ${productCount}</h5>
+                                <button type="button" class="btn btn-sm btn-outline-danger remove-product-btn">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Product Name</label>
+                                <input type="text" class="form-control" name="product_${productCount}_name" value="New Product">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Product Description</label>
+                                <textarea class="form-control" name="product_${productCount}_description" rows="3">Product description goes here.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Product Image</label>
+                                <div class="content-image">
+                                    <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Product Image">
+                                    <div class="image-overlay">
+                                        <button type="button" class="btn btn-light content-image-upload">
+                                            <i class="fas fa-camera me-2"></i>
+                                            Change Image
+                                        </button>
+                                    </div>
+                                </div>
+                                <input type="file" class="form-control d-none" name="product_${productCount}_image" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                productsContainer.appendChild(productCol);
+                initRemoveButtons();
+                initImageUploads();
+            });
+        }
+        
+        // Initialize remove buttons
+        function initRemoveButtons() {
+            // Remove Feature Button
+            document.querySelectorAll('.remove-feature-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const featureItem = this.closest('.feature-item');
+                    if (confirm('Are you sure you want to remove this feature?')) {
+                        featureItem.remove();
+                    }
+                });
+            });
+            
+            // Remove Product Button
+            document.querySelectorAll('.remove-product-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productCol = this.closest('.col-md-6');
+                    if (confirm('Are you sure you want to remove this product?')) {
+                        productCol.remove();
+                    }
+                });
+            });
+        }
+        
+        // Initialize image uploads
+        function initImageUploads() {
+            document.querySelectorAll('.content-image-upload').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const imageContainer = this.closest('.content-image');
+                    const fileInput = imageContainer.nextElementSibling;
+                    fileInput.click();
+                });
+            });
+            
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const imageContainer = this.previousElementSibling;
+                        const img = imageContainer.querySelector('img');
+                        
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            img.src = e.target.result;
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            });
+        }
+        
+        // Initialize
+        initRemoveButtons();
+        initImageUploads();
+        
+        // Form submission
+        const contentForm = document.getElementById('contentEditForm');
+        if (contentForm) {
+            contentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Changes saved successfully!');
+            });
+        }
+    });
+</script>
+{% endblock %}

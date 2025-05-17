@@ -1,0 +1,111 @@
+{
+    "title": "How It Works",
+    "description": "Discover how the Students Mobile SM-81 helps students stay focused and parents stay informed.",
+    "steps": [
+        {
+            "id": 1,
+            "title": "Welcome Screen",
+            "description": "Students are greeted with a clean, distraction-free interface designed for focus.",
+            "image": "step1_welcome.png",
+            "alt": "Welcome screen of the Students Mobile app"
+        },
+        {
+            "id": 2,
+            "title": "Student Registration",
+            "description": "Students create their profile with basic information and educational goals.",
+            "image": "step2_registration.png",
+            "alt": "Student registration screen"
+        },
+        {
+            "id": 3,
+            "title": "Parent Connection",
+            "description": "Parents link their account to monitor usage and set boundaries.",
+            "image": "step3_parent_connection.png",
+            "alt": "Parent connection screen"
+        },
+        {
+            "id": 4,
+            "title": "Focus Mode Setup",
+            "description": "Configure study times when only educational apps are accessible.",
+            "image": "step4_focus_mode.png",
+            "alt": "Focus mode setup screen"
+        },
+        {
+            "id": 5,
+            "title": "App Permissions",
+            "description": "Parents can approve which apps are accessible to students.",
+            "image": "step5_app_permissions.png",
+            "alt": "App permissions screen"
+        },
+        {
+            "id": 6,
+            "title": "Screen Time Limits",
+            "description": "Set daily usage limits to encourage balanced technology use.",
+            "image": "step6_screen_time.png",
+            "alt": "Screen time limits configuration"
+        },
+        {
+            "id": 7,
+            "title": "Educational Resources",
+            "description": "Access to curated educational content and learning tools.",
+            "image": "step7_resources.png",
+            "alt": "Educational resources screen"
+        },
+        {
+            "id": 8,
+            "title": "Progress Tracking",
+            "description": "Monitor study habits and screen time compliance.",
+            "image": "step8_progress.png",
+            "alt": "Progress tracking dashboard"
+        },
+        {
+            "id": 9,
+            "title": "Notifications",
+            "description": "Important alerts for parents about usage patterns.",
+            "image": "step9_notifications.png",
+            "alt": "Notification center screen"
+        },
+        {
+            "id": 10,
+            "title": "Reward System",
+            "description": "Students earn rewards for meeting focus goals.",
+            "image": "step10_rewards.png",
+            "alt": "Reward system screen"
+        },
+        {
+            "id": 11,
+            "title": "Communication",
+            "description": "Safe messaging between parents and students.",
+            "image": "step11_communication.png",
+            "alt": "Communication interface"
+        },
+        {
+            "id": 12,
+            "title": "Emergency Access",
+            "description": "Quick access to important contacts in case of emergency.",
+            "image": "step12_emergency.png",
+            "alt": "Emergency access screen"
+        },
+        {
+            "id": 13,
+            "title": "Usage Reports",
+            "description": "Detailed weekly reports on app usage and study time.",
+            "image": "step13_reports.png",
+            "alt": "Usage reports screen"
+        },
+        {
+            "id": 14,
+            "title": "Settings",
+            "description": "Customize the experience to fit individual needs.",
+            "image": "step14_settings.png",
+            "alt": "Settings screen"
+        },
+        {
+            "id": 15,
+            "title": "Support",
+            "description": "Access to help resources and customer support.",
+            "image": "step15_support.png",
+            "alt": "Support screen"
+        }
+    ]
+}

@@ -1,0 +1,100 @@
+<!-- AI Insights Section -->
+<section class="ai-insights py-5">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">AI-Powered Insights</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="device-showcase slide-in-left">
+                    <div class="tablet-device">
+                        <div class="tablet-screen">
+                            <div class="device-header">
+                                <div class="title">AI Learning Analytics</div>
+                                <div class="actions">
+                                    <i class="fas fa-sync-alt"></i>
+                                    <i class="fas fa-expand"></i>
+                                </div>
+                            </div>
+                            <div class="device-body">
+                                <div class="ai-dashboard">
+                                    <div class="ai-card">
+                                        <div class="icon">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <div class="content">
+                                            <h5>Usage Analytics</h5>
+                                            <p>Screen time reduced by 35% this week.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="ai-card">
+                                        <div class="icon">
+                                            <i class="fas fa-brain"></i>
+                                        </div>
+                                        <div class="content">
+                                            <h5>Learning Patterns</h5>
+                                            <p>Peak focus hours: 9-11 AM</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="ai-card">
+                                        <div class="icon">
+                                            <i class="fas fa-shield-alt"></i>
+                                        </div>
+                                        <div class="content">
+                                            <h5>Content Filtering</h5>
+                                            <p>15 distractions blocked this week.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 slide-in-right">
+                <h3 class="mb-4">Harnessing AI for Better Learning</h3>
+                <p>The {{ info.product_name }} leverages artificial intelligence to provide valuable insights into your child's learning patterns and device usage habits.</p>
+
+                <div class="ai-feature d-flex align-items-start mb-4">
+                    <div class="ai-icon me-3">
+                        <i class="fas fa-chart-line text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Usage Analytics</h4>
+                        <p>Our AI monitors screen time and app usage, providing detailed reports on how your child is using their device for learning.</p>
+                    </div>
+                </div>
+
+                <div class="ai-feature d-flex align-items-start mb-4">
+                    <div class="ai-icon me-3">
+                        <i class="fas fa-brain text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Learning Pattern Recognition</h4>
+                        <p>Our AI identifies your child's optimal learning times and patterns, helping to schedule study sessions when they're most receptive.</p>
+                    </div>
+                </div>
+
+                <div class="ai-feature d-flex align-items-start">
+                    <div class="ai-icon me-3">
+                        <i class="fas fa-shield-alt text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Smart Content Filtering</h4>
+                        <p>AI-powered content filtering adapts to your child's age and learning needs, ensuring they access only appropriate educational content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta py-5 text-white text-center">
+    <div class="container">
+        <h2 class="mb-4">Ready to help your child focus better?</h2>
+        <p class="lead mb-4">Contact us today to learn more about the {{ info.product_name }} and how it can benefit your student.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg">Contact Us Now</a>
+    </div>
+</section>
+{% endblock %}

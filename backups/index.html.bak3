@@ -1,0 +1,176 @@
+<!-- PDF Preview Section -->
+<section class="pdf-preview py-5">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">Our Documentation</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-5 mb-4 mb-lg-0">
+                <div class="device-showcase slide-in-left">
+                    <div class="laptop-device">
+                        <div class="laptop-screen">
+                            <div class="device-header">
+                                <div class="title">{{ info.product_name }} Documentation</div>
+                                <div class="actions">
+                                    <i class="fas fa-download"></i>
+                                    <i class="fas fa-print"></i>
+                                    <i class="fas fa-share"></i>
+                                </div>
+                            </div>
+                            <div class="device-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="mb-0">User Manual</h5>
+                                    <span class="badge bg-primary">PDF</span>
+                                </div>
+                                <div class="mb-3" style="height: 10px; background-color: var(--device-accent); border-radius: 5px;">
+                                    <div style="width: 100%; height: 100%; background-color: var(--primary-color); border-radius: 5px;"></div>
+                                </div>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <small class="text-muted">Complete</small>
+                                    <small class="text-muted">100%</small>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="mb-0">Table of Contents</h6>
+                                </div>
+                                <ul class="list-group list-group-flush mb-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2 border-0">
+                                        <span>1. Getting Started</span>
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2 border-0">
+                                        <span>2. Features & Benefits</span>
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-2 border-0">
+                                        <span>3. Parental Controls</span>
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 zoom-in">
+                            <div class="card-body text-center">
+                                <h3 class="card-title">{{ info.product_name }} Brochure</h3>
+                                <p class="card-text">Explore our product brochure to learn more about the Students Mobile SM-81 and its features.</p>
+                                <a href="{{ url_for('view_pdf', filename='Bifold Brochure- SM81.pdf') }}" class="btn btn-primary">View Brochure</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 zoom-in" style="animation-delay: 0.3s;">
+                            <div class="card-body text-center">
+                                <h3 class="card-title">{{ info.company_name }} Profile</h3>
+                                <p class="card-text">Learn more about our company, our mission, and how we're helping students stay focused.</p>
+                                <a href="{{ url_for('view_pdf', filename='Company Profile.pdf') }}" class="btn btn-primary">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Parent Support Section -->
+<section class="parent-support py-5">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">Supporting Parents & Educators</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6 slide-in-left">
+                <h3 class="mb-4">Partnering with Parents for Success</h3>
+                <p>At {{ info.company_name }}, we believe that parents and educators are essential partners in a child's educational journey.</p>
+
+                <div class="parent-feature d-flex align-items-start mb-4">
+                    <div class="feature-icon me-3">
+                        <i class="fas fa-users text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Family Involvement</h4>
+                        <p>Our tools help parents stay involved in their child's digital learning experience without being intrusive.</p>
+                    </div>
+                </div>
+
+                <div class="parent-feature d-flex align-items-start mb-4">
+                    <div class="feature-icon me-3">
+                        <i class="fas fa-book-reader text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Educational Support</h4>
+                        <p>We provide resources to help parents and teachers maximize the educational benefits of the {{ info.product_name }}.</p>
+                    </div>
+                </div>
+
+                <div class="parent-feature d-flex align-items-start">
+                    <div class="feature-icon me-3">
+                        <i class="fas fa-balance-scale text-primary fa-2x"></i>
+                    </div>
+                    <div>
+                        <h4>Balanced Approach</h4>
+                        <p>Our philosophy promotes a healthy balance between technology use and other important developmental activities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="device-showcase slide-in-right">
+                    <div class="tablet-device">
+                        <div class="tablet-screen">
+                            <div class="device-header">
+                                <div class="title">Parent Control Panel</div>
+                                <div class="actions">
+                                    <i class="fas fa-bell"></i>
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                            </div>
+                            <div class="device-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <h5 class="mb-0">Sarah's Device</h5>
+                                        <small class="text-success">Online</small>
+                                    </div>
+                                    <div class="badge bg-success">Protected</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Daily Screen Time</span>
+                                        <span>2h 15m / 3h</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 75%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Educational Apps</span>
+                                        <span>1h 45m</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-4">
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-lock me-1"></i> Lock Device
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-plus me-1"></i> Add Time
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-info">
+                                        <i class="fas fa-chart-bar me-1"></i> Reports
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

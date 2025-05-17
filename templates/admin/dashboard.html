@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bifold Admin - Dashboard</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Bifold Logo" class="sidebar-logo">
+                <h3>Admin Panel</h3>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item active">
+                    <a href="{{ url_for('admin_dashboard') }}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='home') }}">
+                        <i class="fas fa-home"></i>
+                        <span>Home Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='about') }}">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='products') }}">
+                        <i class="fas fa-box"></i>
+                        <span>Products Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_how_it_works') }}">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>How It Works</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_edit_content', page='contact') }}">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Page</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_documentation') }}">
+                        <i class="fas fa-book"></i>
+                        <span>Documentation</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="{{ url_for('index') }}" target="_blank" class="view-site-btn">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>View Site</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="admin-content">
+            <div class="admin-header">
+                <h1>Dashboard</h1>
+                <div class="admin-user">
+                    <span>Welcome, Admin</span>
+                    <a href="{{ url_for('admin_logout') }}" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
+            
+            <div class="admin-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>4</h3>
+                                <p>Pages</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>15</h3>
+                                <p>App Screens</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>{{ image_count }}</h3>
+                                <p>Images</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-4">
+                        <div class="dashboard-card">
+                            <div class="card-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>2</h3>
+                                <p>PDFs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="content-card">
+                            <div class="card-header">
+                                <h2>Quick Actions</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="quick-actions">
+                                    <a href="{{ url_for('admin_edit_how_it_works') }}" class="quick-action-btn">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>Edit How It Works</span>
+                                    </a>
+                                    <a href="{{ url_for('admin_edit_content', page='home') }}" class="quick-action-btn">
+                                        <i class="fas fa-home"></i>
+                                        <span>Edit Home Page</span>
+                                    </a>
+                                    <a href="{{ url_for('admin_documentation') }}" class="quick-action-btn">
+                                        <i class="fas fa-book"></i>
+                                        <span>View Documentation</span>
+                                    </a>
+                                    <a href="{{ url_for('index') }}" target="_blank" class="quick-action-btn">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        <span>View Website</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 mb-4">
+                        <div class="content-card">
+                            <div class="card-header">
+                                <h2>Recent Updates</h2>
+                            </div>
+                            <div class="card-body">
+                                <ul class="recent-updates">
+                                    {% if recent_updates %}
+                                        {% for update in recent_updates %}
+                                        <li>
+                                            <div class="update-icon">
+                                                <i class="fas fa-{{ update.icon }}"></i>
+                                            </div>
+                                            <div class="update-content">
+                                                <h4>{{ update.title }}</h4>
+                                                <p>{{ update.description }}</p>
+                                                <span class="update-time">{{ update.time }}</span>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li class="no-updates">
+                                            <p>No recent updates</p>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

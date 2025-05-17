@@ -1,0 +1,148 @@
+<!-- About Preview Section -->
+<section class="about-preview py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title">About {{ info.company_name }}</h2>
+                <p>{{ info.company_description }}</p>
+                <p>Seeing how endless scrolling and social media were harming focus, we set out to build something different: a safe, distraction-free phone for students.</p>
+                <p>Based in Singapore, we're proud to empower families, educators, and schools with tools that support young minds — not distract them. Because we believe focus is freedom.</p>
+                <a href="{{ url_for('about') }}" class="btn btn-primary mt-3">Learn More About Us</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="device-showcase slide-in-right">
+                    <div class="laptop-device">
+                        <div class="laptop-screen">
+                            <div class="device-header">
+                                <div class="title">{{ info.company_name }} - Company Profile</div>
+                                <div class="actions">
+                                    <i class="fas fa-minus"></i>
+                                    <i class="fas fa-expand"></i>
+                                    <i class="fas fa-times"></i>
+                                </div>
+                            </div>
+                            <div class="device-body">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div style="width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                        <i class="fas fa-mobile-alt text-white" style="font-size: 24px;"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="mb-0">{{ info.company_name }}</h4>
+                                        <p class="text-muted mb-0">Founded in 2025 by Sudhan Ponnuthurai</p>
+                                    </div>
+                                </div>
+                                <p class="mb-3">Our mission is to help students achieve their full potential by providing technology that promotes focus rather than distraction.</p>
+                                <div class="feature-grid">
+                                    <div class="feature-item">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <h5>Safe</h5>
+                                        <p>Secure environment</p>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-brain"></i>
+                                        <h5>Focus</h5>
+                                        <p>Distraction-free</p>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <h5>Learn</h5>
+                                        <p>Educational tools</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Preview Section -->
+<section class="products-preview py-5">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">Our Featured Product</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8 mb-4">
+                <div class="product-card">
+                    <div class="device-showcase">
+                        <div class="tablet-device">
+                            <div class="tablet-screen">
+                                <div class="device-header">
+                                    <div class="title">{{ info.product_name }}</div>
+                                    <div class="actions">
+                                        <i class="fas fa-cog"></i>
+                                    </div>
+                                </div>
+                                <div class="device-body">
+                                    <div class="text-center mb-3">
+                                        <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="{{ info.company_name }}" style="height: 60px; width: auto;">
+                                        <h4 class="mt-2">SM-81 Student Edition</h4>
+                                    </div>
+                                    <div class="d-flex justify-content-around mb-3">
+                                        <div class="text-center">
+                                            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                                <i class="fas fa-book text-white"></i>
+                                            </div>
+                                            <p class="small mt-1">Study</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: var(--accent-color); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                                <i class="fas fa-calculator" style="color: var(--device-dark);"></i>
+                                            </div>
+                                            <p class="small mt-1">Math</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                                <i class="fas fa-clock text-white"></i>
+                                            </div>
+                                            <p class="small mt-1">Focus</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: var(--accent-color); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                                <i class="fas fa-brain" style="color: var(--device-dark);"></i>
+                                            </div>
+                                            <p class="small mt-1">Learn</p>
+                                        </div>
+                                    </div>
+                                    <div class="progress mb-2" style="height: 8px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%"></div>
+                                    </div>
+                                    <p class="text-center small text-muted">Distraction-free learning environment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h3>{{ info.product_name }}</h3>
+                        <p>{{ info.product_description }}</p>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h4>Key Features:</h4>
+                                <ul class="list-unstyled">
+                                    {% for feature in info.features[:3] %}
+                                    <li><i class="fas fa-check text-success me-2"></i> {{ feature }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Benefits:</h4>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i> Improved focus and concentration</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Better academic performance</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Peace of mind for parents</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="{{ url_for('products') }}" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg">View Product Details</a>
+        </div>
+    </div>
+</section>

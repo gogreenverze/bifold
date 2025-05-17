@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bifold Admin - Edit {{ page_title }}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+
+    <style>
+        .content-editor {
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1rem 1.5rem;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .section-body {
+            padding: 1.5rem;
+        }
+
+        .content-image {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .content-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .content-image:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            background-color: var(--input-bg);
+            border-color: var(--input-border);
+            color: var(--text-color);
+        }
+
+        .form-control:focus {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .preview-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .preview-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="Bifold Logo" class="sidebar-logo">
+                <h3>Admin Panel</h3>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item {% if page == 'dashboard' %}active{% endif %}">
+                    <a href="{{ url_for('admin_dashboard') }}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item {% if page == 'home' %}active{% endif %}">
+                    <a href="{{ url_for('admin_edit_content', page='home') }}">
+                        <i class="fas fa-home"></i>
+                        <span>Home Page</span>
+                    </a>
+                </li>
+                <li class="menu-item {% if page == 'about' %}active{% endif %}">
+                    <a href="{{ url_for('admin_edit_content', page='about') }}">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About Page</span>
+                    </a>
+                </li>
+                <li class="menu-item {% if page == 'products' %}active{% endif %}">
+                    <a href="{{ url_for('admin_edit_content', page='products') }}">
+                        <i class="fas fa-box"></i>
+                        <span>Products Page</span>
+                    </a>
+                </li>
+                <li class="menu-item {% if page == 'how_it_works' %}active{% endif %}">
+                    <a href="{{ url_for('admin_edit_how_it_works') }}">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>How It Works</span>
+                    </a>
+                </li>
+                <li class="menu-item {% if page == 'contact' %}active{% endif %}">
+                    <a href="{{ url_for('admin_edit_content', page='contact') }}">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact Page</span>
+                    </a>
+                </li>
+                <li class="menu-item {% if page == 'documentation' %}active{% endif %}">
+                    <a href="{{ url_for('admin_documentation') }}">
+                        <i class="fas fa-book"></i>
+                        <span>Documentation</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('admin_logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="{{ url_for('index' if page == 'home' else page) }}" target="_blank" class="view-site-btn">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>View Page</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-content">
+            <div class="admin-header">
+                <h1>Edit {{ page_title }}</h1>
+                <div class="admin-actions">
+                    <button type="button" class="btn btn-primary" id="saveContentBtn">
+                        <i class="fas fa-save"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+
+            <div class="admin-body">
+                <form id="contentEditForm">
+                    {% block content_editor %}
+                    <!-- Content editor will be inserted here by child templates -->
+                    {% endblock %}
+
+                    <div class="text-end mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ url_for('index' if page == 'home' else page) }}" target="_blank" class="preview-btn" title="Preview Changes">
+        <i class="fas fa-eye"></i>
+    </a>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
