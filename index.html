@@ -1,0 +1,384 @@
+{% extends 'base.html' %}
+
+{% block title %}Bifold - Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 hero-content slide-in-left">
+                <h1 class="hero-title">Welcome to <span class="text-primary">{{ info.company_name }}</span></h1>
+                <p class="hero-subtitle fade-in" style="animation-delay: 0.3s;">{{ info.product_description }}</p>
+                <div class="hero-cta fade-in mt-4" style="animation-delay: 0.6s;">
+                    <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg me-3">Our Products</a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-primary btn-lg">Contact Us</a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="hero-image text-center zoom-in" style="animation-delay: 0.3s;">
+                    <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="{{ info.company_name }} Logo" class="hero-logo pulse">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features py-5 my-5">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-5">
+                <h2 class="section-title">Why Choose {{ info.product_name }}?</h2>
+                <p class="lead">The SM-81 is designed to help students focus in today's distraction-filled digital world.</p>
+            </div>
+            <div class="col-lg-7">
+                <div class="feature-intro p-4 rounded shadow-sm">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="feature-intro-icon me-3">
+                            <i class="fas fa-lightbulb text-primary fa-2x"></i>
+                        </div>
+                        <h4 class="mb-0">The Focus Revolution</h4>
+                    </div>
+                    <p>The SM-81 increases focused study time by up to 60%, leading to better academic outcomes and reduced screen addiction.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 pt-3">
+            {% for feature in info.features[:3] %}
+            <div class="col-md-4 mb-5">
+                <div class="feature-card text-center h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-{% if loop.index == 1 %}shield-alt{% elif loop.index == 2 %}clock{% else %}check-circle{% endif %}"></i>
+                    </div>
+                    <h4>{{ feature.split(':')[0] if ':' in feature else feature.split('-')[0] if '-' in feature else feature }}</h4>
+                    <p class="mt-3">{{ feature }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row mt-5 pt-3">
+            <div class="col-md-6 mb-4">
+                <div class="testimonial-card p-4 rounded shadow-sm h-100">
+                    <div class="testimonial-quote mb-3">
+                        <i class="fas fa-quote-left text-primary fa-2x"></i>
+                    </div>
+                    <p class="testimonial-text">"Since switching to the SM-81, my daughter's grades have improved significantly. She's more focused during study time."</p>
+                    <div class="testimonial-author mt-3">
+                        <p class="mb-0"><strong>Sarah Chen</strong></p>
+                        <p class="small text-muted">Parent of a 14-year-old student</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="testimonial-card p-4 rounded shadow-sm h-100">
+                    <div class="testimonial-quote mb-3">
+                        <i class="fas fa-quote-left text-primary fa-2x"></i>
+                    </div>
+                    <p class="testimonial-text">"The SM-81 provides the perfect balance - giving students the tech tools they need without the constant interruptions."</p>
+                    <div class="testimonial-author mt-3">
+                        <p class="mb-0"><strong>David Wong</strong></p>
+                        <p class="small text-muted">High School Science Teacher</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Preview Section -->
+<section class="about-preview py-5 my-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title">About {{ info.company_name }}</h2>
+                <p>{{ info.company_description }}</p>
+                <p>Based in Singapore, we empower students with technology that supports learning rather than distracting from it. Because we believe focus is freedom.</p>
+                <a href="{{ url_for('about') }}" class="btn btn-primary mt-4">Learn More About Us</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="device-showcase slide-in-right">
+                    <div class="laptop-device">
+                        <div class="laptop-screen">
+                            <div class="device-header">
+                                <div class="title">{{ info.company_name }} - Company Profile</div>
+                                <div class="actions">
+                                    <i class="fas fa-minus"></i>
+                                    <i class="fas fa-expand"></i>
+                                    <i class="fas fa-times"></i>
+                                </div>
+                            </div>
+                            <div class="device-body">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div style="width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                        <i class="fas fa-mobile-alt text-white" style="font-size: 24px;"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="mb-0">{{ info.company_name }}</h4>
+                                        <p class="text-muted mb-0">Founded in 2025</p>
+                                    </div>
+                                </div>
+                                <div class="feature-grid">
+                                    <div class="feature-item">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <h5>Safe</h5>
+                                        <p>Secure environment</p>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-brain"></i>
+                                        <h5>Focus</h5>
+                                        <p>Distraction-free</p>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <h5>Learn</h5>
+                                        <p>Educational tools</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Preview Section -->
+<section class="products-preview py-5 my-5">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">Our Featured Product</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-10 mb-4">
+                <div class="product-card">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="device-showcase p-4">
+                                <div class="tablet-device">
+                                    <div class="tablet-screen">
+                                        <div class="device-header">
+                                            <div class="title">{{ info.product_name }}</div>
+                                            <div class="actions">
+                                                <i class="fas fa-cog"></i>
+                                            </div>
+                                        </div>
+                                        <div class="device-body">
+                                            <div class="text-center mb-3">
+                                                <img src="{{ url_for('static', filename='images/extracted/brochure/logo.png') }}" alt="{{ info.company_name }}" style="height: 60px; width: auto;">
+                                                <h4 class="mt-2">SM-81 Student Edition</h4>
+                                            </div>
+                                            <div class="d-flex justify-content-around mb-3">
+                                                <div class="text-center">
+                                                    <div style="width: 40px; height: 40px; border-radius: 10px; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                                        <i class="fas fa-book text-white"></i>
+                                                    </div>
+                                                    <p class="small mt-1">Study</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <div style="width: 40px; height: 40px; border-radius: 10px; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                                        <i class="fas fa-clock text-white"></i>
+                                                    </div>
+                                                    <p class="small mt-1">Focus</p>
+                                                </div>
+                                                <div class="text-center">
+                                                    <div style="width: 40px; height: 40px; border-radius: 10px; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                                        <i class="fas fa-brain text-white"></i>
+                                                    </div>
+                                                    <p class="small mt-1">Learn</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="product-content p-4">
+                                <h3>{{ info.product_name }}</h3>
+                                <p>{{ info.product_description }}</p>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <h4>Key Features:</h4>
+                                        <ul class="list-unstyled">
+                                            {% for feature in info.features[:3] %}
+                                            <li><i class="fas fa-check text-success me-2"></i> {{ feature }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4>Benefits:</h4>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-check text-success me-2"></i> Improved focus</li>
+                                            <li><i class="fas fa-check text-success me-2"></i> Better academic performance</li>
+                                            <li><i class="fas fa-check text-success me-2"></i> Peace of mind for parents</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <a href="{{ url_for('products') }}" class="btn btn-primary">View Product Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Documentation Section -->
+<section class="pdf-preview py-5 my-5 bg-light">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">Resources</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 zoom-in shadow">
+                            <div class="card-body text-center p-5">
+                                <i class="fas fa-file-pdf text-primary fa-3x mb-3"></i>
+                                <h3 class="card-title">{{ info.product_name }} Brochure</h3>
+                                <p class="card-text">Explore our product brochure to learn about the SM-81 and its features.</p>
+                                <a href="{{ url_for('view_pdf', filename='Bifold Brochure- SM81.pdf') }}" class="btn btn-primary mt-3">View Brochure</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 zoom-in shadow" style="animation-delay: 0.3s;">
+                            <div class="card-body text-center p-5">
+                                <i class="fas fa-building text-primary fa-3x mb-3"></i>
+                                <h3 class="card-title">{{ info.company_name }} Profile</h3>
+                                <p class="card-text">Learn about our company, mission, and how we're helping students stay focused.</p>
+                                <a href="{{ url_for('view_pdf', filename='Company Profile.pdf') }}" class="btn btn-primary mt-3">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Parent Support Section -->
+<section class="parent-support py-5 my-5">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">Supporting Parents & Educators</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6 slide-in-left">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="parent-feature text-center p-4 h-100 shadow-sm rounded">
+                            <i class="fas fa-users text-primary fa-3x mb-3"></i>
+                            <h4>Family Involvement</h4>
+                            <p>Tools that help parents stay involved without being intrusive.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="parent-feature text-center p-4 h-100 shadow-sm rounded">
+                            <i class="fas fa-book-reader text-primary fa-3x mb-3"></i>
+                            <h4>Educational Support</h4>
+                            <p>Resources to maximize the educational benefits of the SM-81.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <div class="parent-feature text-center p-4 shadow-sm rounded">
+                            <i class="fas fa-balance-scale text-primary fa-3x mb-3"></i>
+                            <h4>Balanced Approach</h4>
+                            <p>Promoting healthy balance between technology use and other important developmental activities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="device-showcase slide-in-right">
+                    <div class="tablet-device">
+                        <div class="tablet-screen">
+                            <div class="device-header">
+                                <div class="title">Parent Control Panel</div>
+                                <div class="actions">
+                                    <i class="fas fa-bell"></i>
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                            </div>
+                            <div class="device-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <h5 class="mb-0">Sarah's Device</h5>
+                                        <small class="text-success">Online</small>
+                                    </div>
+                                    <div class="badge bg-success">Protected</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Daily Screen Time</span>
+                                        <span>2h 15m / 3h</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 75%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Educational Apps</span>
+                                        <span>1h 45m</span>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Insights Section -->
+<section class="ai-insights py-5 my-5 bg-light">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">AI-Powered Insights</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="ai-feature text-center p-4 h-100 shadow rounded">
+                            <i class="fas fa-chart-line text-primary fa-3x mb-3"></i>
+                            <h4>Usage Analytics</h4>
+                            <p>Monitor screen time and app usage with detailed reports on learning activities.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="ai-feature text-center p-4 h-100 shadow rounded">
+                            <i class="fas fa-brain text-primary fa-3x mb-3"></i>
+                            <h4>Learning Patterns</h4>
+                            <p>Identify optimal learning times to schedule study sessions when most effective.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="ai-feature text-center p-4 h-100 shadow rounded">
+                            <i class="fas fa-shield-alt text-primary fa-3x mb-3"></i>
+                            <h4>Smart Filtering</h4>
+                            <p>Adaptive content filtering ensures access to appropriate educational resources.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta py-5 text-white text-center">
+    <div class="container">
+        <h2 class="mb-4">Ready to help your student focus better?</h2>
+        <p class="lead mb-4">Learn more about the {{ info.product_name }} and how it can benefit your student.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-light btn-lg">Contact Us Now</a>
+    </div>
+</section>
+{% endblock %}
